@@ -1,6 +1,9 @@
-# image-crud
+# BowerBird image-crud
 
 ## Project setup
+First create `.env.local` file for environment of your choice (refer to `.env.example`). More about [environment](https://cli.vuejs.org/guide/mode-and-env.html#environment-variables) here.
+
+### Install dependencies
 ```
 npm install
 ```
