@@ -14,12 +14,12 @@ export default [
         name: 'Home',
         // lazy loading routes (https://router.vuejs.org/guide/advanced/lazy-loading.html#lazy-loading-routes)
         // this generates a separate chunk (home.[hash].js) for this route
-        component: () => import(/* webpackChunkName: "home" */ '@/views/Home.vue'),
+        component: () => import(/* webpackChunkName: "home" */ '@/views/home'),
       },
       {
         path: '/about',
         name: 'About',
-        component: () => import(/* webpackChunkName: "about" */ '@/views/About.vue')
+        component: () => import(/* webpackChunkName: "about" */ '@/views/about')
       }
     ],
   },  
