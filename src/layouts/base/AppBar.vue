@@ -1,6 +1,6 @@
 <template>
   <nav class="navbar navbar-expand-md navbar-dark bg-primary">
-    <div class="container-fluid mx-2">
+    <div class="container-fluid mx-4">
       <a
         class="navbar-brand mb-0 h1"
         href="/"
@@ -28,13 +28,19 @@
               class="nav-link text-white"
               aria-current="page"
               href="/"
-            >Images</a>
+            >
+              <font-awesome-icon :icon="['fas', 'image']" />
+              Images
+            </a>
           </li>
           <li class="nav-item">
             <a
               class="nav-link text-white"
               href="/about"
-            >Pictures</a>
+            >
+              <font-awesome-icon :icon="['fas', 'hashtag']" />
+              Tags
+            </a>
           </li>
         </ul>
       </div>
