@@ -4,3 +4,4 @@
 
 import './axios'
 import './bootstrap'
+import './fontawesome'
