@@ -1,4 +1,7 @@
+// Utilize Bootstrap Sass files to customize variables
+// More about Bootstrap Sass (https://getbootstrap.com/docs/5.1/customize/sass)
 
+// Include any default variable overrides here
 $primary: #333333;
 
 @import "../../node_modules/bootstrap/scss/bootstrap";
