@@ -11,6 +11,11 @@ export default [
     children: [
       {
         path: '/',
+        name: 'Login',
+        component: () => import(/* webpackChunkName: "login" */ '@/views/auth/Login')
+      },
+      {
+        path: '/home',
         name: 'Home',
         // lazy loading routes (https://router.vuejs.org/guide/advanced/lazy-loading.html#lazy-loading-routes)
         // this generates a separate chunk (home.[hash].js) for this route
