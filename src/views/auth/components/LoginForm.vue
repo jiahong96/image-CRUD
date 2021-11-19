@@ -13,10 +13,14 @@
           >{{ emailLabel }}</label>
           <input
             id="emailInput"
+            v-model="email"
             type="email"
-            class="form-control form-control-lg shadow-sm"
+            :class="emailClass"
             :placeholder="emailPlaceholder"
           >
+          <div class="invalid-feedback">
+            {{ emailInvalidText }}
+          </div>
         </div>
         <div class="col-12 mb-5">
           <label
@@ -25,15 +29,19 @@
           >{{ passwordLabel }}</label>
           <input
             id="passwordInput"
+            v-model="password"
             type="password"
-            class="form-control form-control-lg shadow-sm"
+            :class="passwordClass"
           >
+          <div class="invalid-feedback">
+            {{ passwordInvalidText }}
+          </div>
         </div>   
 
         <div class="col-12 text-end">
           <button
-            type="button"
             class="btn btn-primary"
+            @click.stop.prevent="submit"
           >
             {{ buttonText }}
           </button>
@@ -49,9 +57,53 @@ export default {
     return {
       title: 'Sign in to BowerBird',
       buttonText: 'Sign In',
+      email: null,
+      emailBlur: false,
       emailLabel: 'Email',
       emailPlaceholder: 'name@example.com',
+      emailInvalidText: 'Valid Email is required.',
+      password: null,
+      passwordBlur: false,
       passwordLabel: 'Password',
+      passwordInvalidText: 'Password is required.'
+    }
+  },
+  computed: {
+    emailClass () {
+      return {
+        'is-invalid': !this.validEmail(this.email) && this.emailBlur,
+        'form-control': true,
+        'form-control-lg': true,
+        'shadow-sm': true,
+      }
+    },
+    passwordClass () {
+      return {
+        'is-invalid': !this.validPassword(this.password) && this.passwordBlur,
+        'form-control': true,
+        'form-control-lg': true,
+        'shadow-sm': true,
+      }
+    },
+  },
+  methods: {
+    submit () {
+      if(!this.validateAll()) return
+    },
+    validateAll () {
+      this.blurInputs()
+
+      return this.validEmail(this.email) && this.validPassword(this.password)
+    },
+    blurInputs () {
+      this.emailBlur = true
+      this.passwordBlur = true
+    },
+    validEmail (email) {      
+      return !!email && /.+@.+/.test(email)
+    },
+    validPassword (password) {
+      return !!password
     }
   },
 }
