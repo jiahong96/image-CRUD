@@ -41,6 +41,7 @@
         <div class="col-12 text-end">
           <button
             class="btn btn-primary"
+            :disabled="progressing"
             @click.stop.prevent="submit"
           >
             {{ buttonText }}
@@ -56,6 +57,7 @@ export default {
   data() {
     return {
       title: 'Sign in to BowerBird',
+      progressing: false,
       buttonText: 'Sign In',
       email: null,
       emailBlur: false,
@@ -89,11 +91,33 @@ export default {
   methods: {
     submit () {
       if(!this.validateAll()) return
+
+      this.login()
     },
     validateAll () {
       this.blurInputs()
 
       return this.validEmail(this.email) && this.validPassword(this.password)
+    },
+    async login () {
+      this.progressing = true
+
+      try {
+        await this.$store.dispatch('auth/login', {
+          email: this.email, 
+          password: this.password
+        })
+
+        this.$router.push({ path: 'home' })
+      } catch (error) {        
+        this.handleHttpError(error)
+      }
+
+      this.progressing = false 
+    },
+    handleHttpError (error) {
+      this.error = true
+      this.errorMessage = error.response.data?.message || 'Failed to login'
     },
     blurInputs () {
       this.emailBlur = true
