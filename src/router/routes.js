@@ -10,7 +10,7 @@ export default [
     component: () => import('@/layouts/base'),
     children: [
       {
-        path: '/',
+        path: '/login',
         name: 'Login',
         component: () => import(/* webpackChunkName: "login" */ '@/views/auth/Login')
       },
