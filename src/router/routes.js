@@ -5,6 +5,12 @@ export default [
       path: '/',
     },
   },
+  { // default route
+    path: '/',
+    redirect: {
+      path: '/home',
+    },
+  },
   {
     path: '',
     component: () => import('@/layouts/base'),
