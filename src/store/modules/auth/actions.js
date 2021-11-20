@@ -1,4 +1,5 @@
 import AuthService from '@/api/AuthService'
+import Vue from 'vue'
 
 export default {
   login ({commit}, {email, password}) {
@@ -11,6 +12,7 @@ export default {
 
           localStorage.setItem('jwt_token', token)
           localStorage.setItem('user', JSON.stringify(user))
+          Vue.prototype.$http.defaults.headers.common['Authorization'] = `Bearer ${token}`
           commit('setUserIdentity', {token, user})
           resolve(response)
         })
