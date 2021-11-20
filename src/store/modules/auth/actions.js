@@ -6,20 +6,29 @@ export default {
     return new Promise ((resolve, reject) => {
       AuthService.login({username: email, password})
         .then((response) => {
-          console.log(response.data)
           const token = response.data.jwt_token
           const user = response.data.data
 
           localStorage.setItem('jwt_token', token)
           localStorage.setItem('user', JSON.stringify(user))
+
+          // set axios global header
           Vue.prototype.$http.defaults.headers.common['Authorization'] = `Bearer ${token}`
+
           commit('setUserIdentity', {token, user})
           resolve(response)
         })
         .catch ((error) => {          
           reject(error)
         })
-    })  
-    
+    })      
+  },
+  logout ({commit}) {
+    localStorage.clear()
+
+    // delete axios global header
+    delete Vue.prototype.$http.defaults.headers.common.Authorization                  
+
+    commit('logout')
   }
 }
