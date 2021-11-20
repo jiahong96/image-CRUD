@@ -6,6 +6,16 @@
       </h2>
 
       <form class="row px-3 px-md-5">
+        <div class="px-2.5">
+          <div
+            v-if="error"
+            class="alert alert-danger"
+            role="alert"
+          >
+            {{ errorMessage }}
+          </div>
+        </div>
+
         <div class="col-12 mb-4">
           <label
             for="emailInput"
@@ -17,6 +27,7 @@
             type="email"
             :class="emailClass"
             :placeholder="emailPlaceholder"
+            @focus="clearError"
           >
           <div class="invalid-feedback">
             {{ emailInvalidText }}
@@ -32,6 +43,7 @@
             v-model="password"
             type="password"
             :class="passwordClass"
+            @focus="clearError"
           >
           <div class="invalid-feedback">
             {{ passwordInvalidText }}
@@ -59,6 +71,8 @@ export default {
       title: 'Sign in to BowerBird',
       progressing: false,
       buttonText: 'Sign In',
+      error: false,
+      errorMessage: '',
       email: null,
       emailBlur: false,
       emailLabel: 'Email',
@@ -118,6 +132,10 @@ export default {
     handleHttpError (error) {
       this.error = true
       this.errorMessage = error.response.data?.message || 'Failed to login'
+    },
+    clearError () {
+      this.error = false
+      this.errorMessage = ''
     },
     blurInputs () {
       this.emailBlur = true
