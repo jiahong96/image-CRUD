@@ -11,13 +11,13 @@ const router = new VueRouter({
   routes
 })
 
-const isAuthenticated = !!store.getters['auth/authorized']
+
 
 router.beforeEach((to, from, next) => {
+  const isAuthenticated = store.getters['auth/authorized']
+
   if (to.name !== 'Login' && !isAuthenticated) next({ name: 'Login' })
-
   else if (to.name === 'Login' && isAuthenticated) next({ name: 'Home' })
-
   else next()
 })
 
