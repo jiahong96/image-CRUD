@@ -131,7 +131,7 @@ export default {
     },
     handleHttpError (error) {
       this.error = true
-      this.errorMessage = error.response.data?.['message'] || 'Failed to login'
+      this.errorMessage = error.response?.['data']?.['message'] || 'Failed to login'
     },
     clearError () {
       this.error = false
