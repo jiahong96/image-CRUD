@@ -4,7 +4,7 @@
       Images
     </h4>
     <div
-      class="btn-group row gx-0 gy-2"
+      class="btn-group row gx-0 gy-2 mb-4"
       role="group"
       aria-label="Filter group"
     >
@@ -28,6 +28,21 @@
         > {{ `${tag.name} (${tag.images_count})` }} </label>
       </div>
     </div>
+
+    <div class="d-flex">
+      <input
+        v-model="searchValue"
+        class="form-control me-2"
+        placeholder="Search"
+        @keyup.enter="search"
+      >
+      <button
+        class="btn bg-white shadow-sm"
+        @click="search"
+      >
+        <font-awesome-icon :icon="['fas', 'search']" />
+      </button>
+    </div>
   </div>
 </template>
 
@@ -37,7 +52,8 @@ import TagService from '@/api/TagService'
 export default {
   data() {
     return {
-      tags: []
+      tags: [],
+      searchValue: null
     }
   },
   created () {
@@ -61,6 +77,9 @@ export default {
     },
     filter (tag) {
       this.$emit('filter', tag)
+    },
+    search () {
+      this.$emit('search', this.searchValue)
     }
   },
 }
