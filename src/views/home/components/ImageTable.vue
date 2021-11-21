@@ -1,6 +1,6 @@
 <template>
   <div class="card">
-    <image-table-header />
+    <image-table-header @filter="setTag" />
 
     <div class="card-body table-responsive">
       <table class="table w-100">
@@ -57,6 +57,7 @@ import Tag from '../../../components/ImageTag.vue'
 import ImageTableHeader from './ImageTableHeader.vue'
 import ImageTableItem from './ImageTableItem.vue'
 import ImageService from '@/api/ImageService'
+
 export default {
   components: {
     Tag,
@@ -66,6 +67,8 @@ export default {
   data() {
     return {
       images: [],
+      search: '',
+      tag: '',
       headers: [
         {name: 'Name', class: 'text-center w-45 fw-normal'},
         {name: 'Tag', class: 'w-25 fw-normal'},
@@ -74,25 +77,33 @@ export default {
       ]
     }
   },
+  watch: {
+    tag () {
+      this.getImages()
+    }
+  },
   created () {
     this.getImages()
   },
   methods: {
     async getImages () {
       try {
-        const response = await ImageService.list()
+        const response = await ImageService.list(this.search, this.tag)
 
         this.images = response.data
       } catch (error) {
         console.log(error)
       }     
-    },
+    },    
     imageTags (tags) {
       return tags.reduce((accumulated, currentValue) => {
         accumulated[currentValue.tag_id] = currentValue.concept_name
         return accumulated
       }, {}) || {}
-    } 
+    },
+    setTag (tag) {
+      this.tag = (tag.name || '').toLowerCase() === 'all' ? '' : tag.name
+    }
   },
 }
 </script>
