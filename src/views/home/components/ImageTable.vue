@@ -32,13 +32,13 @@
             </td>
             <td> 
               <tag
-                v-for="(tag, key) in getTags(image.tags)"
+                v-for="(name, key) in imageTags(image.tags)"
                 :key="key"
-                :text="tag"
+                :text="name"
               />
             </td>
             <td class="text-center">
-              {{ Object.keys(getTags(image.tags)).length }}
+              {{ Object.keys(imageTags(image.tags)).length }}
             </td>
             <td class="text-center">
               <button class="btn bg-white shadow-sm">
@@ -87,7 +87,7 @@ export default {
         console.log(error)
       }     
     },
-    getTags (tags) {
+    imageTags (tags) {
       return tags.reduce((accumulated, currentValue) => {
         accumulated[currentValue.tag_id] = currentValue.concept_name
         return accumulated
