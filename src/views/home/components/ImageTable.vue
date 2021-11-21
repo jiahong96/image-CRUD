@@ -1,6 +1,9 @@
 <template>
   <div class="card">
-    <image-table-header @filter="setTag" />
+    <image-table-header
+      @filter="setTag"
+      @search="setSearch"
+    />
 
     <div class="card-body table-responsive">
       <table class="table w-100">
@@ -80,6 +83,9 @@ export default {
   watch: {
     tag () {
       this.getImages()
+    },
+    search () {
+      this.getImages()
     }
   },
   created () {
@@ -103,6 +109,9 @@ export default {
     },
     setTag (tag) {
       this.tag = (tag.name || '').toLowerCase() === 'all' ? '' : tag.name
+    },
+    setSearch (value) {
+      this.search = value || ''
     }
   },
 }
