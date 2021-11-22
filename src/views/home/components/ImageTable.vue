@@ -28,7 +28,7 @@
               <image-table-item
                 :image-url="image.image_path"
                 :title="image.name"
-                :file-size="5.2"
+                :file-size="image.image_size_in_byte"
               />
             </td>
             <td> 
