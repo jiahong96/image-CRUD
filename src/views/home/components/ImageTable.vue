@@ -14,14 +14,19 @@
               :key="i"
               :class="header.class"
               scope="col"
+              @click="sortBy === header.value ? sort() : {}"
             >
               {{ header.name }}
+              <font-awesome-icon
+                v-if="sortBy === header.value"
+                :icon="['fas', sortIcon]"
+              />
             </th>
           </tr>
         </thead>
         <tbody>
           <tr
-            v-for="image in filteredImages"
+            v-for="image in sortedImages"
             :key="image.id"
           >
             <td>
@@ -83,11 +88,13 @@ export default {
       currentPage: 1,
       search: '',
       tag: '',
+      sortDesc: true,
+      sortBy: 'name',
       headers: [
-        {name: 'Name', class: 'text-center w-35 fw-normal'},
-        {name: 'Tag', class: 'w-30 fw-normal'},
-        {name: 'Total Tags', class: 'text-center w-15 fw-normal'},
-        {name: '', class: ''}
+        {value: 'name', name: 'Name', class: 'text-center w-35 sortable'},
+        {value: 'tag', name: 'Tag', class: 'w-30 fw-normal'},
+        {value: 'total', name: 'Total Tags', class: 'text-center w-15 fw-normal'},
+        {value: 'action', name: '', class: ''}
       ]
     }
   },
@@ -95,11 +102,29 @@ export default {
     pageCount () {
       return Math.ceil(this.images.length / this.rowsPerPage)
     },
+    sortedImages () {
+      return [...this.filteredImages].sort((a, b) => {
+        const nameA = a.name.toUpperCase(); 
+        const nameB = b.name.toUpperCase();
+        if (nameA < nameB) {
+          return this.sortDesc ? 1 : -1;
+        }
+        if (nameA > nameB) {
+          return this.sortDesc ? -1 : 1;
+        }
+  
+        // names must be equal
+        return 0;
+      })
+    },
     filteredImages () {
       const start = (this.currentPage - 1) * this.rowsPerPage
       const end = start + this.rowsPerPage
       
       return this.images.slice(start, end)
+    },
+    sortIcon () {
+      return this.sortDesc ? 'chevron-down' : 'chevron-up'
     }
   },
   watch: {
@@ -137,6 +162,9 @@ export default {
       this.resetPagination()
       this.search = value || ''
     },
+    sort () {    
+      this.sortDesc = !this.sortDesc
+    },
     next () {
       this.currentPage += 1
     },
@@ -152,3 +180,11 @@ export default {
   },
 }
 </script>
+
+<style scoped>
+th.sortable {
+  pointer-events: auto;
+  cursor: pointer;
+  outline: 0;
+}
+</style>
