@@ -47,7 +47,7 @@
               {{ Object.keys(imageTags(image.tags)).length }}
             </td>
             <td class="text-center">
-              <button class="btn bg-white shadow-sm">
+              <button class="btn btn-light">
                 Actions
               </button>
             </td>

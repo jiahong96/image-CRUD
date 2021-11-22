@@ -18,7 +18,10 @@ div.card.card-shadow {
 }
 
 input.form-control {
-  border-color: #FFFFFF;
   box-shadow: 0px 0px 5px 2px rgba(0, 0, 0, 0.1);
+}
+
+button.btn.btn-light {
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.35);
 }
 </style>
