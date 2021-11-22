@@ -1,5 +1,5 @@
 <template>
-  <span class="badge bg-light text-dark mx-0.5">{{ text }}</span>
+  <span class="badge bg-light text-dark me-2">{{ text }}</span>
 </template>
 
 <script>
