@@ -76,7 +76,7 @@ export default {
       email: null,
       emailBlur: false,
       emailLabel: 'Email',
-      emailPlaceholder: 'name@example.com',
+      emailPlaceholder: 'john@bowerbird.io',
       emailInvalidText: 'Valid Email is required.',
       password: null,
       passwordBlur: false,
