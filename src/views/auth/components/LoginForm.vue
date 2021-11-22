@@ -1,5 +1,5 @@
 <template>
-  <div class="card shadow py-4">
+  <div class="card card-shadow py-4">
     <div class="card-body">
       <h2 class="card-title fw-bolder text-center mb-5">
         {{ title }}
