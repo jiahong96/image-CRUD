@@ -16,4 +16,9 @@ img, input.form-control, button.btn, div.card {
 div.card.card-shadow {
   box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
 }
+
+input.form-control {
+  border-color: #FFFFFF;
+  box-shadow: 0px 0px 5px 2px rgba(0, 0, 0, 0.1);
+}
 </style>

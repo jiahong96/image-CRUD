@@ -90,7 +90,6 @@ export default {
         'is-invalid': !this.validEmail(this.email) && this.emailBlur,
         'form-control': true,
         'form-control-lg': true,
-        'shadow-sm': true,
       }
     },
     passwordClass () {
@@ -98,7 +97,6 @@ export default {
         'is-invalid': !this.validPassword(this.password) && this.passwordBlur,
         'form-control': true,
         'form-control-lg': true,
-        'shadow-sm': true,
       }
     },
   },
