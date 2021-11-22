@@ -36,20 +36,19 @@
         placeholder="Search"
         @keyup.enter="search"
       >
-      <button
-        class="btn bg-white shadow-sm"
-        @click="search"
-      >
-        <font-awesome-icon :icon="['fas', 'search']" />
-      </button>
+      <search-button @click="search" />
     </div>
   </div>
 </template>
 
 <script>
 import TagService from '@/api/TagService'
+import SearchButton from '../../../components/SearchButton.vue'
 
 export default {
+  components: {
+    SearchButton,
+  },
   data() {
     return {
       tags: [],
