@@ -11,5 +11,6 @@
 $primary: #333333;
 $font-family-base: 'Inter', sans-serif;
 $border-radius-lg: .5rem;
+$table-cell-padding-y: 1.25rem;
 
-@import "../../node_modules/bootstrap/scss/bootstrap";
+@import "@/../node_modules/bootstrap/scss/bootstrap";
