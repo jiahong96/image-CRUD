@@ -51,3 +51,14 @@
 <script>
 export default { name: 'AppBar'}
 </script>
+
+<style scoped>
+.navbar-brand {
+  font-family: 'Raleway', sans-serif;
+  font-size: 24px;
+}
+
+.nav-link {
+  font-size: 18px;
+}
+</style>
