@@ -29,7 +29,10 @@
               aria-current="page"
               href="/"
             >
-              <font-awesome-icon :icon="['fas', 'image']" />
+              <font-awesome-icon
+                :icon="['fas', 'image']"
+                size="lg"
+              />
               Images
             </a>
           </li>
@@ -38,7 +41,10 @@
               class="nav-link text-white"
               href="/about"
             >
-              <font-awesome-icon :icon="['fas', 'hashtag']" />
+              <font-awesome-icon
+                :icon="['fas', 'hashtag']"
+                size="lg"
+              />
               Tags
             </a>
           </li>
