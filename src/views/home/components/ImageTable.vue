@@ -55,7 +55,7 @@
         </tbody>
       </table>
     </div>
-    <div class="card-footer border-top-0 pt-4 pb-5">
+    <div class="card-footer bg-white border-top-0 pt-4 pb-5">
       <pagination
         :page-count="pageCount"
         :current-page="currentPage"
