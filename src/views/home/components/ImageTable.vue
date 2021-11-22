@@ -21,7 +21,7 @@
         </thead>
         <tbody>
           <tr
-            v-for="image in images"
+            v-for="image in filteredImages"
             :key="image.id"
           >
             <td
@@ -52,6 +52,15 @@
         </tbody>
       </table>
     </div>
+    <div class="card-footer bg-white py-4 px-2">
+      <pagination
+        :page-count="pageCount"
+        :current-page="currentPage"
+        @back="back"
+        @next="next"
+        @pageSelected="setPage"
+      />
+    </div>
   </div>
 </template>
 
@@ -60,16 +69,20 @@ import Tag from '../../../components/ImageTag.vue'
 import ImageTableHeader from './ImageTableHeader.vue'
 import ImageTableItem from './ImageTableItem.vue'
 import ImageService from '@/api/ImageService'
+import Pagination from '../../../components/Pagination.vue'
 
 export default {
   components: {
     Tag,
     ImageTableItem,
     ImageTableHeader,
+    Pagination,
   },
   data() {
     return {
       images: [],
+      rowsPerPage: 2,
+      currentPage: 1,
       search: '',
       tag: '',
       headers: [
@@ -80,13 +93,24 @@ export default {
       ]
     }
   },
+  computed: {
+    pageCount () {
+      return Math.ceil(this.images.length / this.rowsPerPage)
+    },
+    filteredImages () {
+      const start = (this.currentPage - 1) * this.rowsPerPage
+      const end = start + this.rowsPerPage
+      
+      return this.images.slice(start, end)
+    }
+  },
   watch: {
     tag () {
       this.getImages()
     },
     search () {
       this.getImages()
-    }
+    },    
   },
   created () {
     this.getImages()
@@ -108,10 +132,24 @@ export default {
       }, {}) || {}
     },
     setTag (tag) {
+      this.resetPagination()
       this.tag = (tag.name || '').toLowerCase() === 'all' ? '' : tag.name
     },
     setSearch (value) {
+      this.resetPagination()
       this.search = value || ''
+    },
+    next () {
+      this.currentPage += 1
+    },
+    back () {
+      this.currentPage -= 1
+    },
+    setPage (page) {
+      this.currentPage = page
+    },    
+    resetPagination () {
+      this.currentPage = 1
     }
   },
 }
