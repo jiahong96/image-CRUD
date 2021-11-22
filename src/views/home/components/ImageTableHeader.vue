@@ -32,7 +32,7 @@
     <div class="d-flex">
       <input
         v-model="searchValue"
-        class="form-control shadow-sm me-3 rounded-3 border-white"
+        class="form-control shadow-sm me-3 border-white"
         placeholder="Search"
         @keyup.enter="search"
       >

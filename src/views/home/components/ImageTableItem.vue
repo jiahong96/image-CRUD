@@ -7,7 +7,7 @@
         class="col-md-4 text-center text-md-end"
       >
         <img
-          class="contain rounded-3"
+          class="contain"
           :src="`${$http.defaults.baseURL}${imageUrl}`"
           alt=""
           width="75"

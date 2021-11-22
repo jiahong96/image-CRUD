@@ -1,5 +1,5 @@
 <template>
-  <div class="card shadow rounded-3 py-4">
+  <div class="card shadow py-4">
     <div class="card-body">
       <h2 class="card-title fw-bolder text-center mb-5">
         {{ title }}
@@ -52,7 +52,7 @@
 
         <div class="col-12 text-end">
           <button
-            class="btn btn-primary rounded-3 shadow-sm"
+            class="btn btn-primary shadow-sm"
             :disabled="progressing"
             @click.stop.prevent="submit"
           >

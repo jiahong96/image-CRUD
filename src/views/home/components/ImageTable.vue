@@ -1,5 +1,5 @@
 <template>
-  <div class="card rounded-3 shadow-sm">
+  <div class="card shadow">
     <image-table-header
       @filter="setTag"
       @search="setSearch"
