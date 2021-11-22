@@ -1,11 +1,11 @@
 <template>
-  <div class="card">
+  <div class="card rounded-3 shadow-sm">
     <image-table-header
       @filter="setTag"
       @search="setSearch"
     />
 
-    <div class="card-body table-responsive">
+    <div class="card-body table-responsive p-0">
       <table class="table w-100">
         <thead>
           <tr>
@@ -24,9 +24,7 @@
             v-for="image in filteredImages"
             :key="image.id"
           >
-            <td
-              class="d-flex justify-content-center"
-            >
+            <td>
               <image-table-item
                 :image-url="image.image_path"
                 :title="image.name"
@@ -52,7 +50,7 @@
         </tbody>
       </table>
     </div>
-    <div class="card-footer bg-white py-4 px-2">
+    <div class="card-footer border-top-0 bg-white pt-4 pb-5 px-2">
       <pagination
         :page-count="pageCount"
         :current-page="currentPage"
@@ -81,14 +79,14 @@ export default {
   data() {
     return {
       images: [],
-      rowsPerPage: 2,
+      rowsPerPage: 10,
       currentPage: 1,
       search: '',
       tag: '',
       headers: [
-        {name: 'Name', class: 'text-center w-45 fw-normal'},
-        {name: 'Tag', class: 'w-25 fw-normal'},
-        {name: 'Total Tags', class: 'text-center w-20 fw-normal'},
+        {name: 'Name', class: 'text-center w-35 fw-normal'},
+        {name: 'Tag', class: 'w-30 fw-normal'},
+        {name: 'Total Tags', class: 'text-center w-15 fw-normal'},
         {name: '', class: ''}
       ]
     }

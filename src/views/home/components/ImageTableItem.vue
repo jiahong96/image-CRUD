@@ -1,10 +1,10 @@
 <template>
   <div
-    class="card image-card border-0"
+    class="card w-100 border-0"
   >
     <div class="row g-0">
       <div
-        class="col-md-4 text-center text-md-start"
+        class="col-md-4 text-center text-md-end"
       >
         <img
           class="contain rounded-3"
@@ -16,9 +16,9 @@
       </div>
       <div class="col-md-8">
         <div class="card-body py-0 text-center text-md-start">
-          <h6 class="card-title fw-bolder mb-1 text-truncate">
+          <h5 class="card-title fw-bolder mb-1 text-truncate">
             {{ title }}
-          </h6>
+          </h5>
           <p class="card-text">
             <small class="text-black">{{ `${fileSize}MB` }}</small>
           </p>
@@ -46,9 +46,3 @@ export default {
   },
 }
 </script>
-
-<style>
-.image-card {
-  width: 250px;
-}
-</style>

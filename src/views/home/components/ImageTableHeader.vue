@@ -1,8 +1,8 @@
 <template>
   <div class="card-header bg-white p-5 border-bottom-0">
-    <h4 class="card-title mb-4">
+    <h2 class="card-title mb-4 fw-normal">
       Images
-    </h4>
+    </h2>
     <div
       class="btn-group row gx-0 gy-2 mb-4"
       role="group"
@@ -22,7 +22,7 @@
           :checked="tag.id === 1"
         >
         <label
-          class="btn btn-sm btn-outline-primary me-2 rounded-pill"
+          class="btn btn-outline-primary border-white shadow-sm p-3 me-2 rounded-pill"
           :for="tag.id"
           @click="filter(tag)"
         > {{ `${tag.name} (${tag.images_count})` }} </label>
@@ -32,7 +32,7 @@
     <div class="d-flex">
       <input
         v-model="searchValue"
-        class="form-control me-2"
+        class="form-control shadow-sm me-3 rounded-3 border-white"
         placeholder="Search"
         @keyup.enter="search"
       >
@@ -84,3 +84,13 @@ export default {
   },
 }
 </script>
+
+<style lang="scss" scoped>
+@import "@/scss/custom.scss";
+
+.btn-check:checked + .btn-outline-primary, .btn-check:active + .btn-outline-primary, .btn-outline-primary:active, .btn-outline-primary.active, .btn-outline-primary.dropdown-toggle.show {
+  color: $primary;
+  font-weight: $font-weight-bold;
+  background-color: $white;
+}
+</style>
