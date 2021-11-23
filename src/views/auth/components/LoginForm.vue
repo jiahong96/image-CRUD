@@ -52,7 +52,7 @@
 
         <div class="col-12 text-end">
           <button
-            class="btn btn-primary shadow-sm"
+            class="btn btn-primary"
             :disabled="progressing"
             @click.stop.prevent="submit"
           >
