@@ -10,7 +10,7 @@ body {
 }
 
 img, input.form-control, button.btn, div.card, div.card-header, div.card-footer {
-  border-radius: .5rem !important;
+  border-radius: .5rem;
 }
 
 div.card.card-shadow {
