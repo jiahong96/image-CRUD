@@ -144,7 +144,6 @@ export default {
       this.fileInvalid = false
     },
     validName (name) {
-      console.log(name)
       return !!name
     },
     validFile (file) {
