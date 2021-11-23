@@ -3,6 +3,7 @@
     <image-table-header
       @filter="setTag"
       @search="setSearch"
+      @created="getImages"
     />
 
     <div class="card-body table-responsive p-0">

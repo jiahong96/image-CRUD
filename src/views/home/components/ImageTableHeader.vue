@@ -1,8 +1,14 @@
 <template>
   <div class="card-header bg-white p-5 border-bottom-0">
-    <h2 class="card-title mb-4 fw-normal">
-      Images
-    </h2>
+    <div class="d-flex mb-4">
+      <h2
+        class="card-title fw-normal me-3"
+      >
+        Images
+      </h2>
+      <image-modal-create @created="$emit('created')" />
+    </div>
+
     <div
       class="btn-group row gx-0 gy-2 mb-4"
       role="group"
@@ -43,10 +49,12 @@
 <script>
 import TagService from '@/api/TagService'
 import SearchButton from '../../../components/SearchButton.vue'
+import ImageModalCreate from './ImageModalCreate.vue'
 
 export default {
   components: {
     SearchButton,
+    ImageModalCreate,
   },
   data() {
     return {
