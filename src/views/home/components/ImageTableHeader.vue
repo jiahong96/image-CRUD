@@ -83,12 +83,10 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
-@import "@/scss/custom.scss";
-
+<style scoped>
 .btn-check:checked + .btn-outline-primary, .btn-check:active + .btn-outline-primary, .btn-outline-primary:active, .btn-outline-primary.active, .btn-outline-primary.dropdown-toggle.show {
-  color: $primary;
-  font-weight: $font-weight-bold;
-  background-color: $white;
+  color: var(--bs-primary);
+  font-weight: 700;
+  background-color: var(--bs-white);
 }
 </style>
