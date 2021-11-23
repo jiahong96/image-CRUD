@@ -6,8 +6,11 @@
       @created="getImages"
     />
 
-    <div class="card-body table-responsive p-0">
-      <table class="table w-100">
+    <div
+      v-show="!isLoading"
+      class="card-body table-responsive p-0"
+    >
+      <table class="table w-100">        
         <thead>
           <tr>
             <th
@@ -89,6 +92,7 @@ export default {
       currentPage: 1,
       search: '',
       tag: '',
+      isLoading: false,
       sortDesc: true,
       sortBy: 'name',
       headers: [
@@ -141,13 +145,16 @@ export default {
   },
   methods: {
     async getImages () {
+      this.isLoading = true
       try {
         const response = await ImageService.list(this.search, this.tag)
 
         this.images = response.data
       } catch (error) {
         console.log(error)
-      }     
+      }    
+      
+      this.isLoading = false
     },    
     imageTags (tags) {
       return tags.reduce((accumulated, currentValue) => {
