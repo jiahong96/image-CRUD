@@ -11,9 +11,6 @@
         type="button"
         data-bs-toggle="collapse"
         data-bs-target="#navbarSupportedContent"
-        aria-controls="navbarSupportedContent"
-        aria-expanded="false"
-        aria-label="Toggle navigation"
       >
         <span class="navbar-toggler-icon" />
       </button>
@@ -26,7 +23,6 @@
           <li class="nav-item">
             <a
               class="nav-link text-white"
-              aria-current="page"
               href="/"
             >
               <font-awesome-icon

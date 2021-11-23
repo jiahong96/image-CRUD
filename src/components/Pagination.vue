@@ -1,12 +1,11 @@
 <template>
-  <nav aria-label="Page navigation">
+  <nav>
     <ul class="pagination justify-content-center mb-0">
       <li :class="{'page-item': true, 'disabled': isPageOne || !validPageCount}">
         <a
           class="page-link"
           href="#"
           tabindex="-1"
-          aria-disabled="true"
           @click="onPrevious"
         >Previous</a>
       </li>

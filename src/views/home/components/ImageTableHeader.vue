@@ -6,7 +6,6 @@
     <div
       class="btn-group row gx-0 gy-2 mb-4"
       role="group"
-      aria-label="Filter group"
     >
       <div
         v-for="tag in tags"
