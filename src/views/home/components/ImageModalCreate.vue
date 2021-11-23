@@ -12,10 +12,7 @@
       <div class="modal-dialog modal-dialog-centered modal-lg">
         <div class="modal-content py-4 px-5">
           <div class="modal-header justify-content-center border-0">
-            <h2
-              id="uploadTitle"
-              class="modal-title fw-bolder"
-            >
+            <h2 class="modal-title fw-bolder">
               Upload Image
             </h2>
           </div>
@@ -49,6 +46,7 @@ export default {
   data () {
     return {
       modal: null,
+      modalId: 'uploadModal',
       modalOptions: {
         keyboard: false
       },
@@ -83,7 +81,7 @@ export default {
       this.hideModal()
     },
     initModal () {
-      this.modal = new Modal(document.getElementById('uploadModal'), this.modalOptions)
+      this.modal = new Modal(document.getElementById(this.modalId), this.modalOptions)
     },
     hideModal () {
       this.modal.hide()
