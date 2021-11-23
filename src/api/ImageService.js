@@ -15,5 +15,15 @@ export default {
         headers: { 'Content-Type': 'multipart/form-data' },
       },
     })
-  }
+  },
+  update (id, data) {
+    return Vue.prototype.$http.request({
+      url: `/api/v1/${resource}/${id}`,
+      method: 'patch',
+      data,
+      config: {
+        headers: { 'Content-Type': 'multipart/form-data' },
+      },
+    })
+  },
 }
