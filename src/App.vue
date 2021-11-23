@@ -9,7 +9,10 @@ body {
   background-color: #F9F9F9 !important;  
 }
 
-img, input.form-control, button.btn, div.card, div.card-header, div.card-footer {
+img, 
+input.form-control, 
+button.btn, 
+div.card, div.card-header:first-child, div.card-footer:first-child {
   border-radius: .5rem;
 }
 
