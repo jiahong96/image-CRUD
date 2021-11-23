@@ -13,9 +13,12 @@
         v-model="name"
         :name="titleFieldName"
         type="text"
-        class="form-control"
+        :class="nameClass"
         :placeholder="namePlaceholder"
       >
+      <div class="invalid-feedback">
+        {{ nameInvalidText }}
+      </div>
     </div>
 
     <div class="col-12 mb-4">
@@ -59,6 +62,12 @@
           </p>
         </div>                  
       </div>
+      <div
+        v-show="fileInvalid"
+        class="text-danger fs-6"
+      >
+        {{ fileInvalidText }}
+      </div>
     </div>
 
     <div class="col-12 text-end">
@@ -95,21 +104,54 @@ export default {
   },
   data() {
     return {
-      name: null,
       image: null,
+      fileInvalid: false,
+      fileInvalidText: 'Image is required.',
+      name: null,
+      nameBlur: false,
       nameLabel: 'Title',
+      nameInvalidText: 'Valid Title is required.',
       fileLabel: 'Image',
       namePlaceholder: 'Sydney Opera House',
     }
   },
+  computed: {
+    nameClass () {
+      return {
+        'is-invalid': !this.validName(this.name) && this.nameBlur,
+        'form-control': true,
+      }
+    },
+  },
   methods: {
     submit () {
+      if(!this.validateAll()) return
+      
       this.$emit('submit', {file: this.image, name: this.name})
+    },
+    validateAll () {
+      this.blurInputs()
+      
+      const validFile = this.validFile(this.image)
+      return this.validName(this.name) && validFile
+    },
+    blurInputs () {
+      this.nameBlur = true
     },
     fileChange (file) {
       if (!file) return;
       this.image = file[0]     
+      this.fileInvalid = false
     },
+    validName (name) {
+      console.log(name)
+      return !!name
+    },
+    validFile (file) {
+      const valid = !!file
+      if(!valid) this.fileInvalid = true
+      return valid
+    }
   },
 }
 </script>
