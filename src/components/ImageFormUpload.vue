@@ -85,6 +85,10 @@
 <script>
 export default {
   props: {
+    nameValue: {
+      type: String,
+      default: null
+    },
     isUploading: {
       type: Boolean,
       default: false
@@ -122,6 +126,11 @@ export default {
         'form-control': true,
       }
     },
+  },
+  watch: {
+    nameValue (newValue) {
+      if(newValue) this.name = newValue
+    }
   },
   methods: {
     submit () {
