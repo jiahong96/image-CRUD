@@ -86,7 +86,7 @@ export default {
       this.theModal = new Modal(document.getElementById(this.modalId), this.modalOptions)
 
       // listen to show/hide events
-      document.getElementById(this.modalId).addEventListener('shown.bs.modal', () => {
+      document.getElementById(this.modalId).addEventListener('show.bs.modal', () => {
         this.modalShown = true
       })
       document.getElementById(this.modalId).addEventListener('hidden.bs.modal', () => {
