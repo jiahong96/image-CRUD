@@ -187,10 +187,11 @@ export default {
   },
   methods: {
     async getImages () {
+      this.resetPagination()
       this.isLoading = true
+
       try {
         const response = await ImageService.list(this.search, this.tag)
-
         this.images = response.data
       } catch (error) {
         console.log(error)
@@ -215,12 +216,10 @@ export default {
     show (id) {
       this.$router.push(`/image/${id}`)
     },
-    setTag (tag) {
-      this.resetPagination()
+    setTag (tag) {      
       this.tag = (tag.name || '').toLowerCase() === 'all' ? '' : tag.name
     },
     setSearch (value) {
-      this.resetPagination()
       this.search = value || ''
     },
     sort () {    
