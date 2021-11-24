@@ -79,13 +79,6 @@
             </td> 
           </tr>
         </tbody>
-
-        <image-modal-edit
-          :image-id="currentImage.id || ''"
-          :image-name="currentImage.name || ''"
-          :is-visible.sync="showEditModal"
-          @updated="getImages"
-        />           
       </table>
     </div>
     <div class="card-footer bg-white border-top-0 pt-4 pb-5">
@@ -97,6 +90,13 @@
         @pageSelected="setPage"
       />
     </div>
+
+    <image-modal-edit
+      :image-id="currentImage.id || ''"
+      :image-name="currentImage.name || ''"
+      :is-visible.sync="showEditModal"
+      @updated="getImages"
+    />    
   </div>
 </template>
 
