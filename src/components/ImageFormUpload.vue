@@ -178,13 +178,18 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+$boxHeight: 200px;
+$normalTransparency: 0.5;
+$hoverTransparency: 0.8;
+$boxBg: #F9F9F9;
+
 .dropbox {
-  outline: 2px dashed rgba(51, 51, 51, 0.5); /* the dash box */
+  outline: 2px dashed rgba(51, 51, 51, $normalTransparency); /* the dash box */
   outline-offset: -16px;
   border-radius: .5rem;
-  background: rgba(249, 249, 249, 0.5);
+  background: rgba($boxBg, $normalTransparency);
   padding: 16px;
-  min-height: 200px;
+  min-height: $boxHeight;
   position: relative;
   cursor: pointer;
 }
@@ -192,16 +197,16 @@ export default {
 .input-file {
   opacity: 0; /* invisible but it's there! */
   width: 100%;
-  height: 200px;
+  height: $boxHeight;
   position: absolute;
   cursor: pointer;
 }
 
 .dropbox:hover {
-  background: rgba(249, 249, 249, 0.8);
+  background: rgba($boxBg, $hoverTransparency);
 }
 
 .box-container {
-  height: 200px;
+  height: $boxHeight;
 }
 </style>
