@@ -4,12 +4,13 @@
       {{ errorMessage }}
     </h1>
     <image-card
-      v-if="!error && !!imageData"
+      v-if="showCard"
       :image-url="image.image_path"
       :image-id="image.id"
       :title="image.name"
       :file-size="image.image_size_in_byte"
       :tags="imageData.tags"
+      @refresh="showImage"
     />
   </div>
 </template>
@@ -24,6 +25,7 @@ export default {
   data() {
     return {
       imageData: null,
+      isLoading: false,
       error: false,
       errorMessage: ''
     }
@@ -31,6 +33,9 @@ export default {
   computed: {
     image () {
       return this.imageData.image || {} 
+    },
+    showCard () {
+      return !this.error & !!this.imageData && !this.isLoading
     }
   },
   created () {
@@ -38,15 +43,17 @@ export default {
   },
   methods: {
     async showImage () {
+      this.isLoading = true
+
       try {
-        console.log('initial load')
         const response = await ImageService.show(this.$route.params.id)
         this.imageData = response.data
       } catch (error) {
-        console.log(error)
         this.error = true
         this.errorMessage = error.response?.status === 404 ? 'Image not found' : 'Failed to load image'
       }
+
+      this.isLoading = false
     }
   },
 }

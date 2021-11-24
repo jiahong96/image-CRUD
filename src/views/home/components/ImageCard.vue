@@ -30,10 +30,16 @@
             <small class="text-black">{{ $bytesToSize(fileSize) }}</small>
           </p>
 
-          <button class="btn btn-sm btn-light me-3">
+          <button
+            class="btn btn-sm btn-light me-3"
+            @click="edit"
+          >
             Edit
           </button>
-          <button class="btn btn-sm btn-light">
+          <button
+            class="btn btn-sm btn-light"
+            @click="remove"
+          >
             Delete
           </button>
 
@@ -41,23 +47,45 @@
             <p class="mb-1">
               Tags
             </p>
-            <tag
-              v-for="(name, key) in imageTags(tags)"
-              :key="key"
-              :text="name"
-            />
+            <div class="row g-5">
+              <div class="col-auto">
+                <tag
+                  v-for="(name, key) in imageTags(tags)"
+                  :key="key"
+                  :text="name"
+                />
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </div>
+
+    <image-modal-edit 
+      :image-id="imageId"
+      :image-name="title"
+      :is-visible.sync="showEditModal"
+      @updated="refresh"
+    />
+    <image-modal-delete 
+      :image-id="imageId"
+      :image-name="title"
+      :is-visible.sync="showDeleteModal"
+      @deleted="refresh"
+    />
   </div>
 </template>
 
 <script>
 import Tag from '@/components/ImageTag'
+import ImageModalEdit from '@/components/ImageModalEdit.vue'
+import ImageModalDelete from '@/components/ImageModalDelete.vue'
+
 export default {
   components: {
     Tag,
+    ImageModalEdit,
+    ImageModalDelete,
   },
   props: {
     imageId: {
@@ -81,6 +109,12 @@ export default {
       required: true
     }
   },
+  data () {
+    return {
+      showEditModal: false,
+      showDeleteModal: false
+    }
+  },
   methods: {
     imageTags (tags) {
       return tags.reduce((accumulated, currentValue) => {
@@ -88,6 +122,15 @@ export default {
         return accumulated
       }, {}) || {}
     },
+    edit () {
+      this.showEditModal = true
+    },
+    remove () {
+      this.showDeleteModal = true
+    },
+    refresh () {
+      this.$emit('refresh')
+    }
   },
 }
 </script>
