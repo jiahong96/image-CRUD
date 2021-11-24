@@ -41,11 +41,17 @@
               />
             </td>
             <td> 
-              <tag
-                v-for="(name, key) in imageTags(image.tags)"
-                :key="key"
-                :text="name"
-              />
+              <div class="row g-2">
+                <div
+                  v-for="(name, key) in imageTags(image.tags)"
+                  :key="key"
+                  class="col-auto"
+                >
+                  <tag                
+                    :text="name"
+                  />
+                </div>
+              </div>
             </td>
             <td class="text-center">
               {{ Object.keys(imageTags(image.tags)).length }}

@@ -1,6 +1,6 @@
 <template>
   <span
-    class="badge text-primary fs-6 me-2"
+    class="badge text-primary fs-6"
     @click="onClick"
   >{{ text }}</span>
 </template>
