@@ -113,14 +113,14 @@
 </template>
 
 <script>
+import ImageService from '@/api/ImageService'
 import Tag from '@/components/ImageTag.vue'
+import DropdownButton from '@/components/DropdownButton.vue'
 import ImageTableHeader from './ImageTableHeader.vue'
 import ImageTableItem from './ImageTableItem.vue'
-import ImageService from '@/api/ImageService'
 import Pagination from '@/components/Pagination.vue'
-import ImageModalEdit from '../../../components/ImageModalEdit.vue'
-import DropdownButton from '../../../components/DropdownButton.vue'
-import ImageModalDelete from '../../../components/ImageModalDelete.vue'
+import ImageModalEdit from './ImageModalEdit.vue'
+import ImageModalDelete from './ImageModalDelete.vue'
 
 export default {
   components: {

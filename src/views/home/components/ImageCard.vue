@@ -82,8 +82,8 @@
 
 <script>
 import Tag from '@/components/ImageTag'
-import ImageModalEdit from '@/components/ImageModalEdit.vue'
-import ImageModalDelete from '@/components/ImageModalDelete.vue'
+import ImageModalEdit from './ImageModalEdit.vue'
+import ImageModalDelete from './ImageModalDelete.vue'
 
 export default {
   components: {

@@ -37,7 +37,7 @@ import FormData from 'form-data'
 import PlusButton from '@/components/PlusButton.vue'
 import { Modal } from 'bootstrap'
 import ImageService from '@/api/ImageService'
-import ImageFormUpload from '@/components/ImageFormUpload.vue'
+import ImageFormUpload from './ImageFormUpload.vue'
 
 export default {
   components: {
