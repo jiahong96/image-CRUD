@@ -50,11 +50,32 @@
             <td class="text-center">
               {{ Object.keys(imageTags(image.tags)).length }}
             </td>
-            <td class="text-center">
-              <button class="btn btn-light">
+            <td class="text-center dropdown">
+              <button
+                class="btn btn-light dropdown-toggle"
+                type="button"
+                data-bs-toggle="dropdown"
+              >
                 Actions
               </button>
-            </td>
+              <ul class="dropdown-menu">
+                <li>
+                  <a
+                    class="dropdown-item"
+                  >View</a>
+                </li>
+                <li>
+                  <a
+                    class="dropdown-item"                  
+                  >Edit</a>
+                </li>
+                <li>
+                  <a
+                    class="dropdown-item"                  
+                  >Delete</a>
+                </li>
+              </ul>
+            </td>            
           </tr>
         </tbody>
       </table>
@@ -72,11 +93,11 @@
 </template>
 
 <script>
-import Tag from '../../../components/ImageTag.vue'
+import Tag from '@/components/ImageTag.vue'
 import ImageTableHeader from './ImageTableHeader.vue'
 import ImageTableItem from './ImageTableItem.vue'
 import ImageService from '@/api/ImageService'
-import Pagination from '../../../components/Pagination.vue'
+import Pagination from '@/components/Pagination.vue'
 
 export default {
   components: {
