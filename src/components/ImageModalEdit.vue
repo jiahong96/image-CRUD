@@ -21,7 +21,8 @@
 
           <div class="modal-body">
             <image-form-upload
-              :name-value="name"
+              :form-reset="!modalShown"
+              :name-value="imageName"
               :is-uploading="isEditing"
               :title-field-name="titleFieldName"
               :file-field-name="fileFieldName"
@@ -45,16 +46,25 @@ export default {
   components: {
     ImageFormUpload,
   },
+  props: {
+    imageId: {
+      type: String,
+      required: true
+    },
+    imageName: {
+      type: String,
+      required: true
+    }
+  },
   data() {
     return {
-      modal: null,
+      theModal: null,
+      modalShown: false,
       modalId: 'editModal',
       modalOptions: {
         keyboard: false
       },
       isEditing: false,
-      imageId: null,
-      name: null,
       titleFieldName: 'name',
       fileFieldName: 'image',
     }
@@ -85,17 +95,21 @@ export default {
       this.hideModal()
     },
     initModal () {
-      this.modal = new Modal(document.getElementById(this.modalId), this.modalOptions)
+      this.theModal = new Modal(document.getElementById(this.modalId), this.modalOptions)
+
+      // listen to show/hide events
+      document.getElementById(this.modalId).addEventListener('shown.bs.modal', () => {
+        this.modalShown = true
+      })
+      document.getElementById(this.modalId).addEventListener('hidden.bs.modal', () => {
+        this.modalShown = false
+      })
     },
     hideModal () {
-      this.modal.hide()
+      this.theModal.hide()
     },
-    showModal (id = null, name = null) {
-      // access via refs in parent. In some cases <slot> can't be utilized
-      this.imageId = id
-      this.name = name
-
-      this.modal.show()
+    showModal () {
+      this.theModal.show()
     },    
   },
 }

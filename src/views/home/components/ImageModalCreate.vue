@@ -19,6 +19,7 @@
 
           <div class="modal-body">
             <image-form-upload
+              :form-reset="!modalShown"
               :is-uploading="isUploading"
               :title-field-name="titleFieldName"
               :file-field-name="fileFieldName"
@@ -45,7 +46,8 @@ export default {
   },
   data () {
     return {
-      modal: null,
+      theModal: null,
+      modalShown: false,
       modalId: 'uploadModal',
       modalOptions: {
         keyboard: false
@@ -81,13 +83,21 @@ export default {
       this.hideModal()
     },
     initModal () {
-      this.modal = new Modal(document.getElementById(this.modalId), this.modalOptions)
+      this.theModal = new Modal(document.getElementById(this.modalId), this.modalOptions)
+
+      // listen to show/hide events
+      document.getElementById(this.modalId).addEventListener('shown.bs.modal', () => {
+        this.modalShown = true
+      })
+      document.getElementById(this.modalId).addEventListener('hidden.bs.modal', () => {
+        this.modalShown = false
+      })
     },
     hideModal () {
-      this.modal.hide()
+      this.theModal.hide()
     },
     showModal () {
-      this.modal.show()
+      this.theModal.show()
     },    
   },
 }
