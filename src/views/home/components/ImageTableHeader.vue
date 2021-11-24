@@ -10,7 +10,7 @@
     </div>
 
     <div
-      class="btn-group row gx-0 gy-2 mb-4"
+      class="btn-group row g-3 mb-5"
       role="group"
     >
       <div
@@ -27,7 +27,7 @@
           :checked="tag.id === 1"
         >
         <label
-          class="btn btn-tag p-3 me-2 rounded-pill"
+          class="btn btn-tag py-2 rounded-pill"
           :for="tag.id"
           @click="filter(tag)"
         > {{ `${tag.name} (${tag.images_count})` }} </label>
