@@ -45,15 +45,18 @@
           </button>
 
           <div class="mt-4">
-            <p class="mb-1">
+            <p class="mb-2">
               Tags
             </p>
-            <div class="row g-5">
-              <div class="col-auto">
-                <tag
-                  v-for="(name, key) in imageTags(tags)"
-                  :key="key"
+            <div class="row g-2">
+              <div
+                v-for="(name, key) in imageTags(tags)"
+                :key="key"
+                class="col-auto"
+              >
+                <tag                
                   :text="name"
+                  @click="showTag(name)"
                 />
               </div>
             </div>
@@ -122,6 +125,9 @@ export default {
         accumulated[currentValue.tag_id] = currentValue.concept_name
         return accumulated
       }, {}) || {}
+    },
+    showTag (name) {
+      this.$router.push(`/tag/${name}`)
     },
     edit () {
       this.showEditModal = true
