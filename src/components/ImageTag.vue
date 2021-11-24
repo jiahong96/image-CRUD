@@ -1,5 +1,5 @@
 <template>
-  <span class="badge bg-light text-dark me-2">{{ text }}</span>
+  <span class="badge text-primary fs-6 me-2">{{ text }}</span>
 </template>
 
 <script>
@@ -12,3 +12,10 @@ export default {
   },
 }
 </script>
+
+<style scoped>
+.badge {
+  background-color: #F3F4F6;
+  font-weight: 600;
+}
+</style>
