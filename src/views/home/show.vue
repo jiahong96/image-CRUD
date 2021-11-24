@@ -10,7 +10,8 @@
       :title="image.name"
       :file-size="image.image_size_in_byte"
       :tags="imageData.tags"
-      @refresh="showImage"
+      @updated="showImage"
+      @deleted="goBack"
     />
   </div>
 </template>
@@ -54,6 +55,9 @@ export default {
       }
 
       this.isLoading = false
+    },
+    goBack () {
+      this.$router.push('/home')
     }
   },
 }

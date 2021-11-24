@@ -66,13 +66,13 @@
       :image-id="imageId"
       :image-name="title"
       :is-visible.sync="showEditModal"
-      @updated="refresh"
+      @updated="updated"
     />
     <image-modal-delete 
       :image-id="imageId"
       :image-name="title"
       :is-visible.sync="showDeleteModal"
-      @deleted="refresh"
+      @deleted="deleted"
     />
   </div>
 </template>
@@ -129,8 +129,11 @@ export default {
     remove () {
       this.showDeleteModal = true
     },
-    refresh () {
-      this.$emit('refresh')
+    updated () {
+      this.$emit('updated')
+    },
+    deleted () {
+      this.$emit('deleted')
     }
   },
 }
