@@ -1,29 +1,23 @@
 <template>
-  <div
-    class="card w-100 border-0"
-  >
-    <div class="row g-0">
-      <div
-        class="col-md-4 text-center text-md-end"
+  <div class="row">
+    <div
+      class="col-md-3 text-center text-md-end"
+    >
+      <img
+        class="contain"
+        :src="`${$http.defaults.baseURL}${imageUrl}`"
+        alt=""
+        width="75"
+        height="75"
       >
-        <img
-          class="contain"
-          :src="`${$http.defaults.baseURL}${imageUrl}`"
-          alt=""
-          width="75"
-          height="75"
-        >
-      </div>
-      <div class="col-md-8">
-        <div class="card-body py-0 text-center text-md-start">
-          <h5 class="card-title fw-bolder mb-1 text-truncate">
-            {{ title }}
-          </h5>
-          <p class="card-text">
-            <small class="text-black">{{ $bytesToSize(fileSize) }}</small>
-          </p>
-        </div>
-      </div>
+    </div>
+    <div class="col-md-9 text-center text-md-start">
+      <h5 class="fw-bolder mb-1 text-truncate">
+        {{ title }}
+      </h5>
+      <p class="card-text">
+        <small class="text-black">{{ $bytesToSize(fileSize) }}</small>
+      </p>
     </div>
   </div>
 </template>
