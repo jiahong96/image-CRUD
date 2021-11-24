@@ -1,5 +1,8 @@
 <template>
-  <span class="badge text-primary fs-6 me-2">{{ text }}</span>
+  <span
+    class="badge text-primary fs-6 me-2"
+    @click="onClick"
+  >{{ text }}</span>
 </template>
 
 <script>
@@ -9,6 +12,11 @@ export default {
       type: String,
       required: true
     },
+  },
+  methods: {
+    onClick () {
+      this.$emit('click', this.text)
+    }
   },
 }
 </script>
