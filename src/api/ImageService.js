@@ -26,4 +26,7 @@ export default {
       },
     })
   },
+  delete (id) {
+    return Vue.prototype.$http.delete(`/api/v1/${resource}/${id}`)
+  },
 }
