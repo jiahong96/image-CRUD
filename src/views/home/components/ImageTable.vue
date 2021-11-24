@@ -33,7 +33,7 @@
             v-for="image in sortedImages"
             :key="image.id"
           >
-            <td>
+            <td class="ps-5">
               <image-table-item
                 :image-url="image.image_path"
                 :title="image.name"
@@ -50,7 +50,7 @@
             <td class="text-center">
               {{ Object.keys(imageTags(image.tags)).length }}
             </td>
-            <td class="text-center dropdown">
+            <td class="text-end dropdown pe-5">
               <dropdown-button title="Actions"> 
                 <template v-slot:item>
                   <li>
@@ -138,9 +138,9 @@ export default {
       showEditModal: false,
       showDeleteModal: false,
       headers: [
-        {value: 'name', name: 'Name', class: 'text-center w-35 sortable'},
-        {value: 'tag', name: 'Tag', class: 'w-30 fw-normal'},
-        {value: 'total', name: 'Total Tags', class: 'text-center w-15 fw-normal'},
+        {value: 'name', name: 'Name', class: 'header-name text-center sortable'},
+        {value: 'tag', name: 'Tag', class: 'header-tag fw-normal'},
+        {value: 'total', name: 'Total Tags', class: 'header-total text-center fw-normal'},
         {value: 'action', name: '', class: ''}
       ]
     }
@@ -246,5 +246,13 @@ th.sortable {
   pointer-events: auto;
   cursor: pointer;
   outline: 0;
+}
+
+th.header-name, th.header-tag {
+  width: 35%
+}
+
+th.header-total{
+  width: 15%
 }
 </style>

@@ -35,7 +35,7 @@
             <td class="text-center">
               {{ tag.images_count }}
             </td>
-            <td class="dropdown text-end pe-5">
+            <td class="text-end dropdown pe-5">
               <dropdown-button title="Actions">
                 <template v-slot:item>
                   <li>
@@ -81,8 +81,8 @@ export default {
       sortDesc: true,
       sortBy: 'tag',
       headers: [
-        {value: 'tag', name: 'Tag', class: 'ps-5 sortable'},
-        {value: 'total', name: 'Total Images', class: 'text-center fw-normal'},
+        {value: 'tag', name: 'Tag', class: 'header-tag ps-5 sortable'},
+        {value: 'total', name: 'Total Images', class: 'header-total text-center fw-normal'},
         {value: 'action', name: '', class: ''}
       ]
     }
@@ -165,5 +165,13 @@ th.sortable {
   pointer-events: auto;
   cursor: pointer;
   outline: 0;
+}
+
+th.header-tag {
+  width: 25%
+}
+
+th.header-total {
+  width: 25%
 }
 </style>
