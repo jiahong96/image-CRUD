@@ -1,7 +1,7 @@
 <template>
   <span
     class="badge text-primary fs-6"
-    @click="onClick"
+    @click="$emit('click', text)"
   >{{ text }}</span>
 </template>
 
@@ -13,11 +13,6 @@ export default {
       required: true
     },
   },
-  methods: {
-    onClick () {
-      this.$emit('click', this.text)
-    }
-  },
 }
 </script>
 
@@ -25,5 +20,7 @@ export default {
 .badge {
   background-color: #F3F4F6;
   font-weight: 600;
+  cursor: pointer;
+  pointer-events: auto;
 }
 </style>
