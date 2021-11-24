@@ -29,13 +29,13 @@
             v-for="tag in sortedTags"
             :key="tag.id"
           >
-            <td class="ps-5">
+            <td class="ps-6">
               {{ tag.name }}
             </td>
             <td class="text-center">
               {{ tag.images_count }}
             </td>
-            <td class="text-end dropdown pe-5">
+            <td class="text-end dropdown pe-6">
               <dropdown-button title="Actions">
                 <template v-slot:item>
                   <li>
@@ -81,7 +81,7 @@ export default {
       sortDesc: true,
       sortBy: 'tag',
       headers: [
-        {value: 'tag', name: 'Tag', class: 'header-tag ps-5 sortable'},
+        {value: 'tag', name: 'Tag', class: 'header-tag ps-6 sortable'},
         {value: 'total', name: 'Total Images', class: 'header-total text-center fw-normal'},
         {value: 'action', name: '', class: ''}
       ]

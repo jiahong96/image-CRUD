@@ -33,7 +33,7 @@
             v-for="image in sortedImages"
             :key="image.id"
           >
-            <td class="ps-5">
+            <td class="ps-6">
               <image-table-item
                 :image-url="image.image_path"
                 :title="image.name"
@@ -56,7 +56,7 @@
             <td class="text-center">
               {{ Object.keys(imageTags(image.tags)).length }}
             </td>
-            <td class="text-end dropdown pe-5">
+            <td class="text-end dropdown pe-6">
               <dropdown-button title="Actions"> 
                 <template v-slot:item>
                   <li>

@@ -1,5 +1,5 @@
 <template>
-  <div class="container-fluid py-5 px-3 p-md-5">
+  <div class="container-fluid p-6">
     <image-table />
   </div>
 </template>
