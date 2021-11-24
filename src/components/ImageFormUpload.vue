@@ -85,6 +85,10 @@
 <script>
 export default {
   props: {
+    formReset: {
+      type: Boolean,
+      default: false
+    },
     nameValue: {
       type: String,
       default: null
@@ -130,6 +134,9 @@ export default {
   watch: {
     nameValue (newValue) {
       if(newValue) this.name = newValue
+    },
+    formReset (newValue) {
+      if (newValue) this.reset()
     }
   },
   methods: {
@@ -159,6 +166,12 @@ export default {
       const valid = !!file
       if(!valid) this.fileInvalid = true
       return valid
+    },
+    reset () {
+      this.image = null
+      this.name = null
+      this.fileInvalid = false
+      this.nameBlur = false
     }
   },
 }
