@@ -32,6 +32,11 @@ export default [
         name: 'ImageShow',
         component: () => import(/* webpackChunkName: "imageshow" */ '@/views/home/show.vue'),
       },
+      {
+        path: '/tag',
+        name: 'Tag',
+        component: () => import(/* webpackChunkName: "tag" */ '@/views/tag'),
+      },
     ],
   },  
 ]

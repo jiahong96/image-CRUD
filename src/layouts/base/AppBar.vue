@@ -21,28 +21,28 @@
       >
         <ul class="navbar-nav ms-auto">
           <li class="nav-item">
-            <a
+            <router-link
               class="nav-link text-white"
-              href="/"
+              to="/"
             >
               <font-awesome-icon
                 :icon="['fas', 'image']"
                 size="lg"
               />
               Images
-            </a>
+            </router-link>
           </li>
           <li class="nav-item">
-            <a
+            <router-link
               class="nav-link text-white"
-              href="/about"
+              to="/tag"
             >
               <font-awesome-icon
                 :icon="['fas', 'hashtag']"
                 size="lg"
               />
               Tags
-            </a>
+            </router-link>
           </li>
         </ul>
       </div>
