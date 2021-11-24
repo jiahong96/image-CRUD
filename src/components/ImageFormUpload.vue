@@ -58,7 +58,7 @@
             v-if="image"
             class="fs-5 text-center"
           >
-            {{ image.name }}
+            {{ isUploading ? 'Uploading...' : image.name }}
           </p>
         </div>                  
       </div>
