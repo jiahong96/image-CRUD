@@ -1,6 +1,6 @@
 <template>
   <div class="card card-shadow">
-    <!-- header -->
+    <tag-table-header @search="setSearch" />
     <!-- body -->
     <!-- footer -->
   </div>
@@ -8,12 +8,15 @@
 
 <script>
 import TagService from '@/api/TagService'
+import TagTableHeader from './TagTableHeader.vue'
 
 export default {
+  components: { TagTableHeader },
   data() {
     return {
       tags: null,
-      isLoading: false
+      isLoading: false,
+      search: null
     }
   },
   created () {
@@ -31,6 +34,9 @@ export default {
       
       this.isLoading = false
     }, 
+    setSearch (value) {
+      this.search = value  || ''
+    }
   },
 }
 </script>
