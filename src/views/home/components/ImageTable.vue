@@ -56,6 +56,7 @@
                   <li>
                     <a
                       class="dropdown-item"
+                      @click="show(image.id)"
                     >View</a>
                   </li>
                   <li>
@@ -210,6 +211,9 @@ export default {
         accumulated[currentValue.tag_id] = currentValue.concept_name
         return accumulated
       }, {}) || {}
+    },
+    show (id) {
+      this.$router.push(`/image/${id}`)
     },
     setTag (tag) {
       this.resetPagination()
