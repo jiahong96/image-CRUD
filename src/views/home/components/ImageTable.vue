@@ -51,34 +51,29 @@
               {{ Object.keys(imageTags(image.tags)).length }}
             </td>
             <td class="text-center dropdown">
-              <button
-                class="btn btn-light dropdown-toggle"
-                type="button"
-                data-bs-toggle="dropdown"
-              >
-                Actions
-              </button>
-              <ul class="dropdown-menu">
-                <li>
-                  <a
-                    class="dropdown-item"
-                  >View</a>
-                </li>
-                <li>
-                  <a
-                    class="dropdown-item"
-                    @click="edit(image)"                  
-                  >Edit</a>
-                </li>
-                <li>
-                  <a
-                    class="dropdown-item"                  
-                  >Delete</a>
-                </li>
-              </ul>
+              <dropdown-button title="Actions"> 
+                <template v-slot:item>
+                  <li>
+                    <a
+                      class="dropdown-item"
+                    >View</a>
+                  </li>
+                  <li>
+                    <a
+                      class="dropdown-item"
+                      @click="edit(image)"                  
+                    >Edit</a>
+                  </li>
+                  <li>
+                    <a
+                      class="dropdown-item"                  
+                    >Delete</a>
+                  </li>
+                </template>
+              </dropdown-button>
             </td> 
           </tr>
-        </tbody>
+        </tbody>               
       </table>
     </div>
     <div class="card-footer bg-white border-top-0 pt-4 pb-5">
@@ -107,14 +102,16 @@ import ImageTableItem from './ImageTableItem.vue'
 import ImageService from '@/api/ImageService'
 import Pagination from '@/components/Pagination.vue'
 import ImageModalEdit from '../../../components/ImageModalEdit.vue'
+import DropdownButton from '../../../components/DropdownButton.vue'
 
 export default {
   components: {
     Tag,
     ImageTableItem,
     ImageTableHeader,
-    Pagination,
     ImageModalEdit,
+    Pagination,
+    DropdownButton
   },
   data() {
     return {
