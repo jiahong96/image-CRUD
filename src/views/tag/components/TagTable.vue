@@ -21,7 +21,7 @@
         </thead>
         <tbody>
           <tr
-            v-for="tag in tags"
+            v-for="tag in filteredTags"
             :key="tag.id"
           >
             <td class="ps-5">
@@ -45,7 +45,16 @@
         </tbody>
       </table>
     </div>
-    <!-- footer -->
+
+    <div class="card-footer bg-white border-top-0 pt-4 pb-5">
+      <pagination
+        :page-count="pageCount"
+        :current-page="currentPage"
+        @back="back"
+        @next="next"
+        @pageSelected="setPage"
+      />
+    </div>
   </div>
 </template>
 
@@ -53,19 +62,33 @@
 import TagService from '@/api/TagService'
 import DropdownButton from '@/components/DropdownButton.vue'
 import TagTableHeader from './TagTableHeader.vue'
+import Pagination from '@/components/Pagination.vue'
 
 export default {
-  components: { TagTableHeader, DropdownButton },
+  components: { TagTableHeader, DropdownButton, Pagination },
   data() {
     return {
       tags: [],
       isLoading: false,
       search: '',
+      rowsPerPage: 10,
+      currentPage: 1,
       headers: [
         {value: 'tag', name: 'Tag', class: 'ps-5'},
         {value: 'total', name: 'Total Images', class: 'text-center fw-normal'},
         {value: 'action', name: '', class: ''}
       ]
+    }
+  },
+  computed: {
+    pageCount () {
+      return Math.ceil(this.tags.length / this.rowsPerPage)
+    },
+    filteredTags () {
+      const start = (this.currentPage - 1) * this.rowsPerPage
+      const end = start + this.rowsPerPage
+      
+      return this.tags.slice(start, end)
     }
   },
   watch: {
@@ -78,7 +101,9 @@ export default {
   },
   methods: {
     async getTags () {
+      this.resetPagination()
       this.isLoading = true
+
       try {
         const response = await TagService.list(this.search)
         this.tags = response.data
@@ -90,7 +115,19 @@ export default {
     }, 
     setSearch (value) {
       this.search = value  || ''
-    }
+    },
+    setPage (page) {
+      this.currentPage = page
+    },
+    resetPagination () {
+      this.currentPage = 1
+    },
+    next () {
+      this.currentPage += 1
+    },
+    back () {
+      this.currentPage -= 1
+    },
   },
 }
 </script>
