@@ -1,6 +1,6 @@
 <template>
   <div
-    class="card card-shadow p-5 w-100"
+    class="card card-shadow p-6 w-100"
   >
     <h2 class="fw-normal mb-4">
       <router-link

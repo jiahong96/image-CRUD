@@ -1,11 +1,11 @@
 <template>
-  <div class="card card-shadow py-4">
-    <div class="card-body">
+  <div class="card card-shadow p-6">
+    <div class="card-body py-0">
       <h2 class="card-title fw-bolder text-center mb-5">
         {{ title }}
       </h2>
 
-      <form class="row px-3 px-md-5">
+      <form class="row px-2">
         <div class="px-2.5">
           <div
             v-if="error"
@@ -66,7 +66,7 @@
 
 <script>
 export default {
-  data() {
+  data () {
     return {
       title: 'Sign in to BowerBird',
       progressing: false,
