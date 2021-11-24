@@ -40,6 +40,7 @@
             class="btn btn-sm btn-light"
             @click="remove"
           >
+            <font-awesome-icon :icon="['fas', 'trash-alt']" />
             Delete
           </button>
 
