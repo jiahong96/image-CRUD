@@ -27,7 +27,7 @@
           :checked="tag.id === 1"
         >
         <label
-          class="btn btn-outline-primary border-white shadow-sm p-3 me-2 rounded-pill"
+          class="btn btn-tag p-3 me-2 rounded-pill"
           :for="tag.id"
           @click="filter(tag)"
         > {{ `${tag.name} (${tag.images_count})` }} </label>
@@ -92,7 +92,11 @@ export default {
 </script>
 
 <style scoped>
-.btn-check:checked + .btn-outline-primary, .btn-check:active + .btn-outline-primary, .btn-outline-primary:active, .btn-outline-primary.active, .btn-outline-primary.dropdown-toggle.show {
+.btn-tag {
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.25);
+}
+
+.btn-check:checked + .btn-tag, .btn-check:active + .btn-tag, .btn-check:hover + .btn-tag, .btn-tag.active, .btn-tag.dropdown-toggle.show {
   color: var(--bs-primary);
   font-weight: 700;
   background-color: var(--bs-white);
