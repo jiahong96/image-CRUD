@@ -27,6 +27,11 @@ export default [
         // this generates a separate chunk (home.[hash].js) for this route
         component: () => import(/* webpackChunkName: "home" */ '@/views/home'),
       },
+      {
+        path: '/image/:id',
+        name: 'ImageShow',
+        component: () => import(/* webpackChunkName: "imageshow" */ '@/views/home/show.vue'),
+      },
     ],
   },  
 ]
