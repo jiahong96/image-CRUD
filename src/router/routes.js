@@ -27,11 +27,6 @@ export default [
         // this generates a separate chunk (home.[hash].js) for this route
         component: () => import(/* webpackChunkName: "home" */ '@/views/home'),
       },
-      {
-        path: '/about',
-        name: 'About',
-        component: () => import(/* webpackChunkName: "about" */ '@/views/about')
-      }
     ],
   },  
 ]
