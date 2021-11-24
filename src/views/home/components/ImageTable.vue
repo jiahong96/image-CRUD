@@ -66,7 +66,8 @@
                   </li>
                   <li>
                     <a
-                      class="dropdown-item"                  
+                      class="dropdown-item"   
+                      @click="remove(image)"               
                     >Delete</a>
                   </li>
                 </template>
@@ -91,7 +92,14 @@
       :image-name="currentImage.name || ''"
       :is-visible.sync="showEditModal"
       @updated="getImages"
-    />    
+    />   
+
+    <image-modal-delete 
+      :image-id="currentImage.id || ''"
+      :image-name="currentImage.name || ''"
+      :is-visible.sync="showDeleteModal"
+      @deleted="getImages"
+    /> 
   </div>
 </template>
 
@@ -103,6 +111,7 @@ import ImageService from '@/api/ImageService'
 import Pagination from '@/components/Pagination.vue'
 import ImageModalEdit from '../../../components/ImageModalEdit.vue'
 import DropdownButton from '../../../components/DropdownButton.vue'
+import ImageModalDelete from '../../../components/ImageModalDelete.vue'
 
 export default {
   components: {
@@ -111,7 +120,8 @@ export default {
     ImageTableHeader,
     ImageModalEdit,
     Pagination,
-    DropdownButton
+    DropdownButton,
+    ImageModalDelete
   },
   data() {
     return {
@@ -125,6 +135,7 @@ export default {
       sortBy: 'name',
       currentImage: {},
       showEditModal: false,
+      showDeleteModal: false,
       headers: [
         {value: 'name', name: 'Name', class: 'text-center w-35 sortable'},
         {value: 'tag', name: 'Tag', class: 'w-30 fw-normal'},
@@ -189,6 +200,10 @@ export default {
     edit (image) {
       this.currentImage = image
       this.showEditModal = true
+    },
+    remove (image) {
+      this.currentImage = image
+      this.showDeleteModal = true
     },
     imageTags (tags) {
       return tags.reduce((accumulated, currentValue) => {
