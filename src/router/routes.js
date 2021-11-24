@@ -37,6 +37,11 @@ export default [
         name: 'Tag',
         component: () => import(/* webpackChunkName: "tag" */ '@/views/tag'),
       },
+      {
+        path: '/tag/:name',
+        name: 'TagShow',
+        component: () => import(/* webpackChunkName: "tagshow" */ '@/views/home'),
+      },
     ],
   },  
 ]
