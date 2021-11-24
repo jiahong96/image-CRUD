@@ -60,13 +60,18 @@ export default {
     return {
       tags: [],
       isLoading: false,
-      search: null,
+      search: '',
       headers: [
         {value: 'tag', name: 'Tag', class: 'ps-5'},
         {value: 'total', name: 'Total Images', class: 'text-center fw-normal'},
         {value: 'action', name: '', class: ''}
       ]
     }
+  },
+  watch: {
+    search () {
+      this.getTags()
+    },    
   },
   created () {
     this.getTags()
@@ -75,7 +80,7 @@ export default {
     async getTags () {
       this.isLoading = true
       try {
-        const response = await TagService.list()
+        const response = await TagService.list(this.search)
         this.tags = response.data
       } catch (error) {
         console.log(error)
