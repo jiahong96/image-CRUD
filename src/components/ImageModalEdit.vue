@@ -1,6 +1,6 @@
 <template>
   <div
-    id="editModal"
+    :id="modalId"
     class="modal fade"
     tabindex="-1"
   >

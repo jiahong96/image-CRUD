@@ -1,6 +1,6 @@
 <template>
   <div
-    id="deleteModal"
+    :id="modalId"
     class="modal fade"
     tabindex="-1"
   >

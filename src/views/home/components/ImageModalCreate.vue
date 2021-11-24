@@ -5,7 +5,7 @@
 
     <!-- Modal -->
     <div
-      id="uploadModal"
+      :id="modalId"
       class="modal fade"
       tabindex="-1"
     >
