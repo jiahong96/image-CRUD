@@ -66,7 +66,8 @@
                 </li>
                 <li>
                   <a
-                    class="dropdown-item"                  
+                    class="dropdown-item"
+                    @click="edit(image)"                  
                   >Edit</a>
                 </li>
                 <li>
@@ -75,9 +76,16 @@
                   >Delete</a>
                 </li>
               </ul>
-            </td>            
+            </td> 
           </tr>
         </tbody>
+
+        <image-modal-edit
+          :image-id="currentImage.id || ''"
+          :image-name="currentImage.name || ''"
+          :is-visible.sync="showEditModal"
+          @updated="getImages"
+        />           
       </table>
     </div>
     <div class="card-footer bg-white border-top-0 pt-4 pb-5">
@@ -98,6 +106,7 @@ import ImageTableHeader from './ImageTableHeader.vue'
 import ImageTableItem from './ImageTableItem.vue'
 import ImageService from '@/api/ImageService'
 import Pagination from '@/components/Pagination.vue'
+import ImageModalEdit from '../../../components/ImageModalEdit.vue'
 
 export default {
   components: {
@@ -105,6 +114,7 @@ export default {
     ImageTableItem,
     ImageTableHeader,
     Pagination,
+    ImageModalEdit,
   },
   data() {
     return {
@@ -116,6 +126,8 @@ export default {
       isLoading: false,
       sortDesc: true,
       sortBy: 'name',
+      currentImage: {},
+      showEditModal: false,
       headers: [
         {value: 'name', name: 'Name', class: 'text-center w-35 sortable'},
         {value: 'tag', name: 'Tag', class: 'w-30 fw-normal'},
@@ -177,6 +189,10 @@ export default {
       
       this.isLoading = false
     },    
+    edit (image) {
+      this.currentImage = image
+      this.showEditModal = true
+    },
     imageTags (tags) {
       return tags.reduce((accumulated, currentValue) => {
         accumulated[currentValue.tag_id] = currentValue.concept_name

@@ -1,35 +1,27 @@
 <template>
-  <div>
-    <!-- Modal Activator -->
-    <div @click="showModal">
-      <slot name="activator" />
-    </div>
+  <div
+    id="editModal"
+    class="modal fade"
+    tabindex="-1"
+  >
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content py-4 px-5">
+        <div class="modal-header justify-content-center border-0">
+          <h2 class="modal-title fw-bolder">
+            Edit Image
+          </h2>
+        </div>
 
-    <!-- Modal -->
-    <div
-      id="editModal"
-      class="modal fade"
-      tabindex="-1"
-    >
-      <div class="modal-dialog modal-dialog-centered modal-lg">
-        <div class="modal-content py-4 px-5">
-          <div class="modal-header justify-content-center border-0">
-            <h2 class="modal-title fw-bolder">
-              Edit Image
-            </h2>
-          </div>
-
-          <div class="modal-body">
-            <image-form-upload
-              :form-reset="!modalShown"
-              :name-value="imageName"
-              :is-uploading="isEditing"
-              :title-field-name="titleFieldName"
-              :file-field-name="fileFieldName"
-              button-title="Edit"
-              @submit="edit"
-            />
-          </div>
+        <div class="modal-body">
+          <image-form-upload
+            :form-reset="!modalShown"
+            :name-value="imageName"
+            :is-uploading="isEditing"
+            :title-field-name="titleFieldName"
+            :file-field-name="fileFieldName"
+            button-title="Edit"
+            @submit="edit"
+          />
         </div>
       </div>
     </div>
@@ -54,6 +46,10 @@ export default {
     imageName: {
       type: String,
       required: true
+    },
+    isVisible: {
+      type: Boolean,
+      required: true
     }
   },
   data() {
@@ -67,6 +63,11 @@ export default {
       isEditing: false,
       titleFieldName: 'name',
       fileFieldName: 'image',
+    }
+  },
+  watch: {
+    isVisible (newValue) {
+      if(newValue) this.showModal()
     }
   },
   mounted () {
@@ -103,6 +104,7 @@ export default {
       })
       document.getElementById(this.modalId).addEventListener('hidden.bs.modal', () => {
         this.modalShown = false
+        this.$emit('update:isVisible', false)
       })
     },
     hideModal () {
