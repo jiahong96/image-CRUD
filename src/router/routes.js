@@ -25,22 +25,22 @@ export default [
         name: 'Home',
         // lazy loading routes (https://router.vuejs.org/guide/advanced/lazy-loading.html#lazy-loading-routes)
         // this generates a separate chunk (home.[hash].js) for this route
-        component: () => import(/* webpackChunkName: "home" */ '@/views/home'),
+        component: () => import(/* webpackChunkName: "home" */ '@/views/image/Index.vue'),
       },
       {
         path: '/image/:id',
         name: 'ImageShow',
-        component: () => import(/* webpackChunkName: "imageshow" */ '@/views/home/show.vue'),
+        component: () => import(/* webpackChunkName: "imageshow" */ '@/views/image/Show.vue'),
       },
       {
         path: '/tag',
         name: 'Tag',
-        component: () => import(/* webpackChunkName: "tag" */ '@/views/tag'),
+        component: () => import(/* webpackChunkName: "tag" */ '@/views/tag/Index.vue'),
       },
       {
         path: '/tag/:name',
         name: 'TagShow',
-        component: () => import(/* webpackChunkName: "tagshow" */ '@/views/home'),
+        component: () => import(/* webpackChunkName: "tagshow" */ '@/views/image/Index.vue'),
       },
     ],
   },  
