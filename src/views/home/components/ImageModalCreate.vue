@@ -19,7 +19,7 @@
 
           <div class="modal-body">
             <image-form-upload
-              :form-reset="!modalShown"
+              :is-shown="modalShown"
               :is-uploading="isUploading"
               :title-field-name="titleFieldName"
               :file-field-name="fileFieldName"

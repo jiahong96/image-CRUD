@@ -14,7 +14,7 @@
 
         <div class="modal-body">
           <image-form-upload
-            :form-reset="!modalShown"
+            :is-shown="modalShown"
             :name-value="imageName"
             :is-uploading="isEditing"
             :title-field-name="titleFieldName"

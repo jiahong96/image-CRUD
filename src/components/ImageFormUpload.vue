@@ -85,7 +85,7 @@
 <script>
 export default {
   props: {
-    formReset: {
+    isShown: {
       type: Boolean,
       default: false
     },
@@ -132,12 +132,11 @@ export default {
     },
   },
   watch: {
-    nameValue (newValue) {
-      if(newValue) this.name = newValue
+    isShown (newValue) {
+      if(newValue && this.nameValue) this.name = this.nameValue
+
+      if(!newValue) this.reset()
     },
-    formReset (newValue) {
-      if (newValue) this.reset()
-    }
   },
   methods: {
     submit () {
