@@ -1,6 +1,6 @@
 <template>
   <div class="container-fluid p-6">
-    <image-table />
+    <image-table :tag-filter="$route.params.name" />
   </div>
 </template>
 

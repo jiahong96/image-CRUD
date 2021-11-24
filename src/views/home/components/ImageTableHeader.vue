@@ -2,6 +2,18 @@
   <div class="card-header bg-white p-6 pb-4 border-bottom-0">
     <div class="d-flex mb-4">
       <h2
+        v-if="tagFilter"
+        class="card-title fw-normal me-3"
+      >
+        <router-link
+          to="/tag"
+          class="text-decoration-none"
+        >
+          Tags
+        </router-link> {{ ` / ${tagFilter}` }}
+      </h2>
+      <h2
+        v-else
         class="card-title fw-normal me-3"
       >
         Images
@@ -10,6 +22,7 @@
     </div>
 
     <div
+      v-if="!tagFilter"
       class="btn-group row g-3 mb-5"
       role="group"
     >
@@ -55,6 +68,12 @@ export default {
   components: {
     SearchButton,
     ImageModalCreate,
+  },
+  props: {
+    tagFilter: {
+      type: String,
+      default: ''
+    },
   },
   data() {
     return {

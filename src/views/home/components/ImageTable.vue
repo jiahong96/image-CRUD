@@ -1,6 +1,7 @@
 <template>
   <div class="card card-shadow">
     <image-table-header
+      :tag-filter="tagFilter"
       @filter="setTag"
       @search="setSearch"
       @created="getImages"
@@ -130,6 +131,12 @@ export default {
     DropdownButton,
     ImageModalDelete
   },
+  props: {
+    tagFilter: {
+      type: String,
+      default: ''
+    },
+  },
   data() {
     return {
       images: [],
@@ -181,6 +188,12 @@ export default {
     }
   },
   watch: {
+    tagFilter: {
+      immediate: true,
+      handler (newValue) {
+        this.tag = newValue
+      }
+    },
     tag () {
       this.getImages()
     },
