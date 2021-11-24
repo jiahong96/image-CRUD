@@ -50,6 +50,7 @@
                 >
                   <tag                
                     :text="name"
+                    @click="showTag"
                   />
                 </div>
               </div>
@@ -235,6 +236,9 @@ export default {
     show (id) {
       this.$router.push(`/image/${id}`)
     },
+    showTag (name) {
+      this.$router.push(`/tag/${name}`)
+    },
     setTag (tag) {      
       this.tag = (tag.name || '').toLowerCase() === 'all' ? '' : tag.name
     },
@@ -264,7 +268,6 @@ export default {
 th.sortable {
   pointer-events: auto;
   cursor: pointer;
-  outline: 0;
 }
 
 th.header-name, th.header-tag {

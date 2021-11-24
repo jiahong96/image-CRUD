@@ -41,6 +41,7 @@
                   <li>
                     <a
                       class="dropdown-item"
+                      @click="showTag(tag.name)"
                     >View</a>
                   </li>
                 </template>
@@ -138,6 +139,9 @@ export default {
       
       this.isLoading = false
     }, 
+    showTag (name) {
+      this.$router.push(`/tag/${name}`)
+    },
     setSearch (value) {
       this.search = value  || ''
     },
