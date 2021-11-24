@@ -19,6 +19,30 @@
             </th>
           </tr>
         </thead>
+        <tbody>
+          <tr
+            v-for="tag in tags"
+            :key="tag.id"
+          >
+            <td class="ps-5">
+              {{ tag.name }}
+            </td>
+            <td class="text-center">
+              {{ tag.images_count }}
+            </td>
+            <td class="dropdown text-end pe-5">
+              <dropdown-button title="Actions">
+                <template v-slot:item>
+                  <li>
+                    <a
+                      class="dropdown-item"
+                    >View</a>
+                  </li>
+                </template>
+              </dropdown-button>
+            </td>
+          </tr>
+        </tbody>
       </table>
     </div>
     <!-- footer -->
@@ -27,19 +51,20 @@
 
 <script>
 import TagService from '@/api/TagService'
+import DropdownButton from '@/components/DropdownButton.vue'
 import TagTableHeader from './TagTableHeader.vue'
 
 export default {
-  components: { TagTableHeader },
+  components: { TagTableHeader, DropdownButton },
   data() {
     return {
-      tags: null,
+      tags: [],
       isLoading: false,
       search: null,
       headers: [
         {value: 'tag', name: 'Tag', class: 'ps-5'},
         {value: 'total', name: 'Total Images', class: 'text-center fw-normal'},
-        {value: 'action', name: '', class: 'text-center'}
+        {value: 'action', name: '', class: ''}
       ]
     }
   },
