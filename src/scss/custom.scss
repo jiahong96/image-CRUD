@@ -9,9 +9,11 @@
 
 // Include any default variable overrides here
 $primary: #333333;
+$body-color: $primary;
 $font-family-base: 'Inter', sans-serif;
 $border-radius-lg: .5rem;
 $table-cell-padding-y: 1.25rem;
+$input-placeholder-color: #A9A9A9;
 
 // margin and padding
 $spacer: 1rem;

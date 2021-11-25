@@ -5,6 +5,7 @@
 </template>
 
 <style>
+/* set bg color here as bootstrap $body-bg reused in other elements */
 body {
   background-color: #F9F9F9 !important;  
 }
@@ -27,6 +28,7 @@ input.form-control {
 
 button.btn.btn-light {
   background-color: #fff;
+  color: var(--bs-primary);
   box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.35);
 }
 </style>
