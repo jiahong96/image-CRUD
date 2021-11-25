@@ -1,5 +1,7 @@
 # BowerBird image-crud
 
+https://bowerbird-f9338.web.app/
+
 ## Project setup
 - First create `.env.local` file for environment of your choice (refer to `.env.example`). More about [environment](https://cli.vuejs.org/guide/mode-and-env.html#environment-variables) here.
 - Install ESLint and Vetur extensions to integrate linting into VS Code (refer to `.eslintrc.js` for the rules).
