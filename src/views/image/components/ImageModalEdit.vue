@@ -14,7 +14,7 @@
 
         <div class="modal-body">
           <image-form-upload
-            :is-shown="modalShown"
+            :is-shown="isVisible"
             :name-value="imageName"
             :is-uploading="isEditing"
             :title-field-name="titleFieldName"
@@ -55,7 +55,6 @@ export default {
   data() {
     return {
       theModal: null,
-      modalShown: false,
       modalId: 'editModal',
       modalOptions: {
         keyboard: false
@@ -108,12 +107,7 @@ export default {
     initModal () {
       this.theModal = new Modal(document.getElementById(this.modalId), this.modalOptions)
 
-      // listen to show/hide events
-      document.getElementById(this.modalId).addEventListener('show.bs.modal', () => {
-        this.modalShown = true
-      })
       document.getElementById(this.modalId).addEventListener('hidden.bs.modal', () => {
-        this.modalShown = false
         this.$emit('update:isVisible', false)
       })
     },    
