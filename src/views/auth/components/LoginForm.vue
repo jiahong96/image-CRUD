@@ -1,5 +1,5 @@
 <template>
-  <div class="card card-shadow p-6">
+  <div class="card card-shadow px-1 py-5 p-md-6">
     <div class="card-body py-0">
       <!-- form title -->
       <h2 class="card-title fw-bolder text-center mb-5">
