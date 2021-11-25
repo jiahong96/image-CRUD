@@ -5,7 +5,7 @@
     tabindex="-1"
   >
     <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content py-4 px-5">
+      <div class="modal-content py-4 px-3 px-lg-5">
         <div class="modal-header justify-content-center border-0">
           <h2 class="modal-title fw-bolder">
             Delete Image

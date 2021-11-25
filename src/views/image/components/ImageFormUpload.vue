@@ -38,11 +38,11 @@
           @change="fileChange($event.target.files)"
         >
         <div
-          class="box-container d-flex justify-content-center align-items-center"
+          class="box-container d-flex flex-column flex-lg-row justify-content-center align-items-center"
         >
           <p
             v-if="!image"
-            class="fs-5 text-start mb-0 me-4"
+            class="fs-5 text-center text-lg-start mb-0 me-4"
           >
             Drop an image here or
             <br> <span class="text-decoration-underline">Browse from your computer</span>

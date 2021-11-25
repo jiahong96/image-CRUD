@@ -5,8 +5,8 @@
     tabindex="-1"
   >
     <div class="modal-dialog modal-dialog-centered modal-lg">
-      <div class="modal-content py-4 px-5">
-        <div class="modal-header justify-content-center border-0">
+      <div class="modal-content px-4 py-5 p-md-6">
+        <div class="modal-header pt-0 justify-content-center border-0">
           <h2 class="modal-title fw-bolder">
             Edit Image
           </h2>
