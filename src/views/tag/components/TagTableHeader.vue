@@ -1,5 +1,5 @@
 <template>
-  <div class="card-header bg-white p-6 pb-4 border-bottom-0">
+  <div class="card-header bg-white p-4 p-md-6 pb-2 pb-md-4 border-bottom-0">
     <h2
       class="card-title fw-normal mb-4"
     >

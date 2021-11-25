@@ -1,7 +1,7 @@
 <template>
-  <div class="row">
+  <div class="row gy-3">
     <div
-      class="col-md-3 text-center text-md-end"
+      class="col-lg-4 text-center text-lg-end"
     >
       <img
         class="contain"
@@ -11,7 +11,7 @@
         height="75"
       >
     </div>
-    <div class="col-md-9 text-center text-md-start">
+    <div class="col-lg-8 text-center text-lg-start">
       <h5 class="fw-bolder mb-1 text-truncate">
         {{ title }}
       </h5>
