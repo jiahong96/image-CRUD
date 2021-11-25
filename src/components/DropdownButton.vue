@@ -29,10 +29,14 @@ export default {
 
 <style scoped>
 .dropdown-el {
-  min-width: 110px
+  min-width: 110px;
 }
 
 .dropdown-toggle::after {
   display: none;
+}
+
+.dropdown-item {
+  color: #000;
 }
 </style>

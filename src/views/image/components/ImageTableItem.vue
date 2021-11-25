@@ -16,7 +16,7 @@
         {{ title }}
       </h5>
       <p class="card-text">
-        <small class="text-black">{{ $bytesToSize(fileSize) }}</small>
+        <small>{{ $bytesToSize(fileSize) }}</small>
       </p>
     </div>
   </div>

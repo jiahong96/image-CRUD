@@ -115,10 +115,11 @@ export default {
 <style scoped>
 .btn-tag {
   box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.25);
+  color: #555555;
 }
 
 .btn-check:checked + .btn-tag, .btn-check:active + .btn-tag, .btn-check:hover + .btn-tag, .btn-tag.active, .btn-tag.dropdown-toggle.show {
-  color: var(--bs-primary);
+  color: #555555;
   font-weight: 700;
   background-color: var(--bs-white);
 }
