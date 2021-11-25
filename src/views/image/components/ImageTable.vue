@@ -30,64 +30,12 @@
             </th>
           </tr>
         </thead>
-        <tbody>
-          <tr
-            v-for="image in filteredImages"
-            :key="image.id"
-          >
-            <td class="ps-6">
-              <image-table-item
-                :image-url="image.image_path"
-                :title="image.name"
-                :file-size="image.image_size_in_byte"
-              />
-            </td>
-            <td> 
-              <div class="row g-2">
-                <div
-                  v-for="(name, key) in imageTags(image.tags)"
-                  :key="key"
-                  class="col-auto"
-                >
-                  <tag                
-                    :text="name"
-                    @click="showTag"
-                  />
-                </div>
-              </div>
-            </td>
-            <td class="text-center">
-              {{ Object.keys(imageTags(image.tags)).length }}
-            </td>
-            <td class="text-end dropdown pe-6">
-              <dropdown-button title="Actions"> 
-                <template v-slot:item>
-                  <li>
-                    <a
-                      class="dropdown-item btn"
-                      role="button"
-                      @click="show(image.id)"
-                    >View</a>
-                  </li>
-                  <li>
-                    <a
-                      class="dropdown-item btn"
-                      role="button"
-                      @click="edit(image)"                  
-                    >Edit</a>
-                  </li>
-                  <li>
-                    <a
-                      class="dropdown-item btn"
-                      role="button"   
-                      @click="remove(image)"               
-                    >Delete</a>
-                  </li>
-                </template>
-              </dropdown-button>
-            </td> 
-          </tr>
-        </tbody>               
+        
+        <image-table-body 
+          :images="filteredImages"
+          @updated="getImages"
+          @deleted="getImages"
+        />             
       </table>
     </div>
 
@@ -100,43 +48,21 @@
         @next="next"
         @pageSelected="setPage"
       />
-    </div>
-
-    <!-- Edit & Delete Modals -->
-    <image-modal-edit
-      :image-id="currentImage.id || ''"
-      :image-name="currentImage.name || ''"
-      :is-visible.sync="showEditModal"
-      @updated="getImages"
-    />   
-    <image-modal-delete 
-      :image-id="currentImage.id || ''"
-      :image-name="currentImage.name || ''"
-      :is-visible.sync="showDeleteModal"
-      @deleted="getImages"
-    /> 
+    </div>     
   </div>
 </template>
 
 <script>
 import ImageService from '@/api/ImageService'
-import Tag from '@/components/ImageTag.vue'
-import DropdownButton from '@/components/DropdownButton.vue'
 import ImageTableHeader from './ImageTableHeader.vue'
-import ImageTableItem from './ImageTableItem.vue'
 import Pagination from '@/components/Pagination.vue'
-import ImageModalEdit from './ImageModalEdit.vue'
-import ImageModalDelete from './ImageModalDelete.vue'
+import ImageTableBody from './ImageTableBody.vue'
 
 export default {
-  components: {
-    Tag,
-    ImageTableItem,
-    ImageTableHeader,
-    ImageModalEdit,
+  components: {    
+    ImageTableHeader,    
+    ImageTableBody,
     Pagination,
-    DropdownButton,
-    ImageModalDelete
   },
   props: {
     tagFilter: {
@@ -153,10 +79,7 @@ export default {
       tag: '',
       isLoading: false,
       sortDesc: true,
-      sortBy: 'name',
-      currentImage: {},
-      showEditModal: false,
-      showDeleteModal: false,
+      sortBy: 'name',      
       headers: [
         {value: 'name', name: 'Name', class: 'header-name text-center sortable'},
         {value: 'tag', name: 'Tag', class: 'header-tag fw-normal'},
@@ -215,21 +138,7 @@ export default {
     },    
     resetPagination () {
       this.currentPage = 1
-    },
-    edit (image) {
-      this.currentImage = image
-      this.showEditModal = true
-    },
-    remove (image) {
-      this.currentImage = image
-      this.showDeleteModal = true
     },    
-    show (id) {
-      this.$router.push(`/image/${id}`)
-    },
-    showTag (name) {
-      this.$router.push(`/tag/${name}`)
-    },
     setTag (tag) {      
       this.tag = (tag.name || '').toLowerCase() === 'all' ? '' : tag.name
     },
@@ -260,13 +169,7 @@ export default {
     },
     setPage (page) {
       this.currentPage = page
-    },   
-    imageTags (tags) {
-      return tags.reduce((accumulated, currentValue) => {
-        accumulated[currentValue.tag_id] = currentValue.concept_name
-        return accumulated
-      }, {}) || {}
-    },
+    },       
   },
 }
 </script>
