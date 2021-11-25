@@ -1,10 +1,12 @@
 <template>
   <div class="card card-shadow p-6">
     <div class="card-body py-0">
+      <!-- form title -->
       <h2 class="card-title fw-bolder text-center mb-5">
         {{ title }}
       </h2>
 
+      <!-- form body -->
       <form class="row px-2">
         <div class="px-2.5">
           <div
@@ -111,21 +113,36 @@ export default {
 
       return this.validEmail(this.email) && this.validPassword(this.password)
     },
+    blurInputs () {
+      this.emailBlur = true
+      this.passwordBlur = true
+    }, 
+    validEmail (email) {      
+      return !!email && /.+@.+/.test(email)
+    },
+    validPassword (password) {
+      return !!password
+    },
     async login () {
       this.progressing = true
 
       try {
-        await this.$store.dispatch('auth/login', {
-          email: this.email, 
-          password: this.password
-        })
-
-        this.$router.push({ path: 'home' })
+        await this.dispatchLogin()
+        this.goToHome()
       } catch (error) {        
         this.handleHttpError(error)
       }
 
       this.progressing = false 
+    },
+    dispatchLogin () {
+      return this.$store.dispatch('auth/login', {
+        email: this.email, 
+        password: this.password
+      })
+    },
+    goToHome () {
+      this.$router.push({ path: 'home' })
     },
     handleHttpError (error) {
       this.error = true
@@ -134,17 +151,7 @@ export default {
     clearError () {
       this.error = false
       this.errorMessage = ''
-    },
-    blurInputs () {
-      this.emailBlur = true
-      this.passwordBlur = true
-    },
-    validEmail (email) {      
-      return !!email && /.+@.+/.test(email)
-    },
-    validPassword (password) {
-      return !!password
-    }
+    },       
   },
 }
 </script>
