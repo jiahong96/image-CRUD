@@ -98,6 +98,12 @@ export default {
       this.$emit('deleted')
       this.hideModal()
     },
+    hideModal () {
+      this.theModal.hide()
+    },
+    showModal () {
+      this.theModal.show()
+    },
     initModal () {
       this.theModal = new Modal(document.getElementById(this.modalId), this.modalOptions)
 
@@ -109,12 +115,6 @@ export default {
         this.modalShown = false
         this.$emit('update:isVisible', false)
       })
-    },
-    hideModal () {
-      this.theModal.hide()
-    },
-    showModal () {
-      this.theModal.show()
     },
   },
 }

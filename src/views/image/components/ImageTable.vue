@@ -166,9 +166,6 @@ export default {
     }
   },
   computed: {
-    pageCount () {
-      return Math.ceil(this.images.length / this.rowsPerPage)
-    },    
     filteredImages () {
       const start = (this.currentPage - 1) * this.rowsPerPage
       const end = start + this.rowsPerPage
@@ -178,6 +175,9 @@ export default {
     sortedImages () {
       return [...this.images].sort(this.compareNames)
     },
+    pageCount () {
+      return Math.ceil(this.images.length / this.rowsPerPage)
+    },    
     sortIcon () {
       return this.sortDesc ? 'chevron-down' : 'chevron-up'
     }
@@ -213,6 +213,9 @@ export default {
       
       this.isLoading = false
     },    
+    resetPagination () {
+      this.currentPage = 1
+    },
     edit (image) {
       this.currentImage = image
       this.showEditModal = true
@@ -221,12 +224,6 @@ export default {
       this.currentImage = image
       this.showDeleteModal = true
     },    
-    imageTags (tags) {
-      return tags.reduce((accumulated, currentValue) => {
-        accumulated[currentValue.tag_id] = currentValue.concept_name
-        return accumulated
-      }, {}) || {}
-    },
     show (id) {
       this.$router.push(`/image/${id}`)
     },
@@ -264,9 +261,12 @@ export default {
     setPage (page) {
       this.currentPage = page
     },   
-    resetPagination () {
-      this.currentPage = 1
-    }
+    imageTags (tags) {
+      return tags.reduce((accumulated, currentValue) => {
+        accumulated[currentValue.tag_id] = currentValue.concept_name
+        return accumulated
+      }, {}) || {}
+    },
   },
 }
 </script>

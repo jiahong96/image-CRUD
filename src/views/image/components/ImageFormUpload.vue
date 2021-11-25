@@ -114,13 +114,13 @@ export default {
   data() {
     return {
       image: null,
+      fileLabel: 'Image',
       fileInvalid: false,
       fileInvalidText: 'Image is required.',
       name: null,
-      nameBlur: false,
       nameLabel: 'Title',
+      nameBlur: false,
       nameInvalidText: 'Valid Title is required.',
-      fileLabel: 'Image',
       namePlaceholder: 'Sydney Opera House',
     }
   },
@@ -154,11 +154,6 @@ export default {
     blurInputs () {
       this.nameBlur = true
     },
-    fileChange (file) {
-      if (!file) return;
-      this.image = file[0]     
-      this.fileInvalid = false
-    },
     validName (name) {
       return !!name
     },
@@ -166,6 +161,11 @@ export default {
       const valid = !!file
       if(!valid) this.fileInvalid = true
       return valid
+    },
+    fileChange (file) {
+      if (!file) return;
+      this.image = file[0]     
+      this.fileInvalid = false
     },
     reset () {
       this.image = null

@@ -63,14 +63,9 @@ export default {
   methods: {
     async save ({file, name}) {
       this.isUploading = true
-      const formData = new FormData();
-
-      // append the file and name to FormData
-      formData.append(`${this.fileFieldName}[${this.fileFieldName}]`, file, file.name)
-      formData.append(`${this.fileFieldName}[${this.titleFieldName}]`, name)
 
       try {
-        await ImageService.create(formData)
+        await ImageService.create(this.imageFormData(file, name))
         this.imageUploaded()
       } catch (error) {
         console.log(error)
@@ -78,9 +73,24 @@ export default {
 
       this.isUploading = false
     },
+    imageFormData (file, name) {
+      const formData = new FormData();
+
+      // append the file and name to FormData
+      formData.append(`${this.fileFieldName}[${this.fileFieldName}]`, file, file.name)
+      formData.append(`${this.fileFieldName}[${this.titleFieldName}]`, name)
+
+      return formData
+    },
     imageUploaded () {
       this.$emit('created')
       this.hideModal()
+    },    
+    hideModal () {
+      this.theModal.hide()
+    },
+    showModal () {
+      this.theModal.show()
     },
     initModal () {
       this.theModal = new Modal(document.getElementById(this.modalId), this.modalOptions)
@@ -92,12 +102,6 @@ export default {
       document.getElementById(this.modalId).addEventListener('hidden.bs.modal', () => {
         this.modalShown = false
       })
-    },
-    hideModal () {
-      this.theModal.hide()
-    },
-    showModal () {
-      this.theModal.show()
     },    
   },
 }

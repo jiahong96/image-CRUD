@@ -92,9 +92,6 @@ export default {
     }
   },
   computed: {
-    pageCount () {
-      return Math.ceil(this.tags.length / this.rowsPerPage)
-    },
     filteredTags () {
       const start = (this.currentPage - 1) * this.rowsPerPage
       const end = start + this.rowsPerPage
@@ -104,6 +101,9 @@ export default {
     sortedTags () {
       return [...this.tags].sort(this.compareNames)
     },    
+    pageCount () {
+      return Math.ceil(this.tags.length / this.rowsPerPage)
+    },
     sortIcon () {
       return this.sortDesc ? 'chevron-down' : 'chevron-up'
     }
@@ -130,6 +130,9 @@ export default {
       
       this.isLoading = false
     }, 
+    resetPagination () {
+      this.currentPage = 1
+    },
     showTag (name) {
       this.$router.push(`/tag/${name}`)
     },
@@ -138,9 +141,6 @@ export default {
     },
     setPage (page) {
       this.currentPage = page
-    },
-    resetPagination () {
-      this.currentPage = 1
     },
     next () {
       this.currentPage += 1

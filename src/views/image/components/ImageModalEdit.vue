@@ -76,14 +76,9 @@ export default {
   methods: {
     async edit ({file, name}) {
       this.isEditing = true
-      const formData = new FormData();
-
-      // append the file and name to FormData
-      formData.append(`${this.fileFieldName}[${this.fileFieldName}]`, file, file.name)
-      formData.append(`${this.fileFieldName}[${this.titleFieldName}]`, name)
 
       try {
-        await ImageService.update(this.imageId, formData)
+        await ImageService.update(this.imageId, this.imageFormData(file, name))
         this.imageUpdated()
       } catch (error) {
         console.log(error)
@@ -91,9 +86,24 @@ export default {
 
       this.isEditing = false
     },
+    imageFormData (file, name) {
+      const formData = new FormData();
+
+      // append the file and name to FormData
+      formData.append(`${this.fileFieldName}[${this.fileFieldName}]`, file, file.name)
+      formData.append(`${this.fileFieldName}[${this.titleFieldName}]`, name)
+
+      return formData
+    },
     imageUpdated () {
       this.$emit('updated')
       this.hideModal()
+    },
+    hideModal () {
+      this.theModal.hide()
+    },
+    showModal () {
+      this.theModal.show()
     },
     initModal () {
       this.theModal = new Modal(document.getElementById(this.modalId), this.modalOptions)
@@ -106,12 +116,6 @@ export default {
         this.modalShown = false
         this.$emit('update:isVisible', false)
       })
-    },
-    hideModal () {
-      this.theModal.hide()
-    },
-    showModal () {
-      this.theModal.show()
     },    
   },
 }
