@@ -65,9 +65,9 @@
       </div>
       <div
         v-show="fileInvalid"
-        class="text-danger fs-6"
+        class="text-danger"
       >
-        {{ fileInvalidText }}
+        <small>{{ fileInvalidText }}</small>
       </div>
     </div>
 

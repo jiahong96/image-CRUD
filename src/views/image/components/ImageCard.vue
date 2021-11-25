@@ -40,14 +40,14 @@
             class="btn btn-sm btn-light me-3"
             @click="edit"
           >
-            Edit
+            <span class="fs-6">Edit</span>
           </button>
           <button
             class="btn btn-sm btn-light"
             @click="remove"
           >
             <font-awesome-icon :icon="['fas', 'trash-alt']" />
-            Delete
+            <span class="fs-6 ms-2">Delete</span>
           </button>
 
           <!-- tags -->
