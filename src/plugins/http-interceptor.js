@@ -5,7 +5,7 @@ import router from '@/router'
 Vue.prototype.$http.interceptors.response.use(undefined, (error) => {
   if (error.response?.status === 401) {
     store.dispatch('auth/logout')
-    router.push({ path: '/login' })
+    if(router.currentRoute.path !== '/login') router.push({ path: '/login' })
   } 
 
   return Promise.reject(error)
