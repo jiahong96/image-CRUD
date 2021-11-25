@@ -119,8 +119,7 @@ export default {
 }
 
 .btn-check:checked + .btn-tag, .btn-check:active + .btn-tag, .btn-check:hover + .btn-tag, .btn-tag.active, .btn-tag.dropdown-toggle.show {
-  color: #555555;
-  font-weight: 700;
+  text-shadow: 0 0 .75px #555555, 0 0 .75px #555555;
   background-color: var(--bs-white);
 }
 </style>
