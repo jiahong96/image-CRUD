@@ -31,7 +31,7 @@
         </thead>
         <tbody>
           <tr
-            v-for="image in sortedImages"
+            v-for="image in filteredImages"
             :key="image.id"
           >
             <td class="ps-6">
@@ -162,27 +162,15 @@ export default {
   computed: {
     pageCount () {
       return Math.ceil(this.images.length / this.rowsPerPage)
-    },
-    sortedImages () {
-      return [...this.filteredImages].sort((a, b) => {
-        const nameA = a.name.toUpperCase(); 
-        const nameB = b.name.toUpperCase();
-        if (nameA < nameB) {
-          return this.sortDesc ? 1 : -1;
-        }
-        if (nameA > nameB) {
-          return this.sortDesc ? -1 : 1;
-        }
-  
-        // names must be equal
-        return 0;
-      })
-    },
+    },    
     filteredImages () {
       const start = (this.currentPage - 1) * this.rowsPerPage
       const end = start + this.rowsPerPage
       
-      return this.images.slice(start, end)
+      return [...this.sortedImages].slice(start, end)
+    },
+    sortedImages () {
+      return [...this.images].sort(this.compareNames)
     },
     sortIcon () {
       return this.sortDesc ? 'chevron-down' : 'chevron-up'
@@ -247,6 +235,19 @@ export default {
     },
     sort () {    
       this.sortDesc = !this.sortDesc
+    },
+    compareNames (a, b) {
+      const nameA = a.name.toUpperCase(); 
+      const nameB = b.name.toUpperCase();
+      if (nameA < nameB) {
+        return this.sortDesc ? 1 : -1;
+      }
+      if (nameA > nameB) {
+        return this.sortDesc ? -1 : 1;
+      }
+  
+      // names must be equal
+      return 0;
     },
     next () {
       this.currentPage += 1

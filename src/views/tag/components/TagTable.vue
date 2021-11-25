@@ -26,7 +26,7 @@
         </thead>
         <tbody>
           <tr
-            v-for="tag in sortedTags"
+            v-for="tag in filteredTags"
             :key="tag.id"
           >
             <td class="ps-6">
@@ -92,27 +92,15 @@ export default {
     pageCount () {
       return Math.ceil(this.tags.length / this.rowsPerPage)
     },
-    sortedTags () {
-      return [...this.filteredTags].sort((a, b) => {
-        const nameA = a.name.toUpperCase(); 
-        const nameB = b.name.toUpperCase();
-        if (nameA < nameB) {
-          return this.sortDesc ? 1 : -1;
-        }
-        if (nameA > nameB) {
-          return this.sortDesc ? -1 : 1;
-        }
-  
-        // names must be equal
-        return 0;
-      })
-    },
     filteredTags () {
       const start = (this.currentPage - 1) * this.rowsPerPage
       const end = start + this.rowsPerPage
       
-      return this.tags.slice(start, end)
-    },
+      return [...this.sortedTags].slice(start, end)
+    },    
+    sortedTags () {
+      return [...this.tags].sort(this.compareNames)
+    },    
     sortIcon () {
       return this.sortDesc ? 'chevron-down' : 'chevron-up'
     }
@@ -160,6 +148,19 @@ export default {
     sort () {    
       this.sortDesc = !this.sortDesc
     },
+    compareNames (a, b) {
+      const nameA = a.name.toUpperCase()
+      const nameB = b.name.toUpperCase()
+      if (nameA < nameB) {
+        return this.sortDesc ? 1 : -1
+      }
+      if (nameA > nameB) {
+        return this.sortDesc ? -1 : 1
+      }
+  
+      // names must be equal
+      return 0
+    }
   },
 }
 </script>
