@@ -63,19 +63,22 @@
                 <template v-slot:item>
                   <li>
                     <a
-                      class="dropdown-item"
+                      class="dropdown-item btn"
+                      role="button"
                       @click="show(image.id)"
                     >View</a>
                   </li>
                   <li>
                     <a
-                      class="dropdown-item"
+                      class="dropdown-item btn"
+                      role="button"
                       @click="edit(image)"                  
                     >Edit</a>
                   </li>
                   <li>
                     <a
-                      class="dropdown-item"   
+                      class="dropdown-item btn"
+                      role="button"   
                       @click="remove(image)"               
                     >Delete</a>
                   </li>

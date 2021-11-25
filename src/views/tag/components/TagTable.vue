@@ -40,7 +40,8 @@
                 <template v-slot:item>
                   <li>
                     <a
-                      class="dropdown-item"
+                      class="dropdown-item btn"
+                      role="button"
                       @click="showTag(tag.name)"
                     >View</a>
                   </li>
