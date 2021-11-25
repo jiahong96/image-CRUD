@@ -1,6 +1,7 @@
 <template>
   <div
-    class="card card-shadow p-6 w-100"
+    class="card card-shadow p-4 p-md-6 w-100"
+    style="min-height:80vh"
   > 
     <!-- card header -->
     <h2 class="fw-normal mb-4">
@@ -12,60 +13,56 @@
       </router-link> {{ ` / ${title}` }}
     </h2>
 
-    <div class="row g-0">
+    <div class="d-flex flex-column flex-md-row">
       <!-- image section -->
-      <div class="col-md-4">
-        <img
-          class="contain"
-          :src="`${$http.defaults.baseURL}${imageUrl}`"
-          alt="image"
-          width="350"
-          height="350"
-        >
-      </div>
+      <img
+        class="contain"
+        :src="`${$http.defaults.baseURL}${imageUrl}`"
+        alt="image"
+        width="350"
+        height="350"
+      >
 
       <!-- image details section -->
-      <div class="col-md-8">
-        <div class="card-body">
-          <h5 class="card-title fw-bolder fs-2">
-            {{ title }}
-          </h5>
+      <div class="card-body ms-md-5">
+        <h5 class="card-title fw-bolder fs-2">
+          {{ title }}
+        </h5>
 
-          <p class="card-text">
-            <small class="text-black">{{ $bytesToSize(fileSize) }}</small>
+        <p class="card-text">
+          <small>{{ $bytesToSize(fileSize) }}</small>
+        </p>
+
+        <!-- action buttons -->
+        <button
+          class="btn btn-sm btn-light me-3"
+          @click="edit"
+        >
+          <span class="fs-6">Edit</span>
+        </button>
+        <button
+          class="btn btn-sm btn-light"
+          @click="remove"
+        >
+          <font-awesome-icon :icon="['fas', 'trash-alt']" />
+          <span class="fs-6 ms-2">Delete</span>
+        </button>
+
+        <!-- tags -->
+        <div class="mt-4">
+          <p class="mb-2 text-black">
+            Tags
           </p>
-
-          <!-- action buttons -->
-          <button
-            class="btn btn-sm btn-light me-3"
-            @click="edit"
-          >
-            <span class="fs-6">Edit</span>
-          </button>
-          <button
-            class="btn btn-sm btn-light"
-            @click="remove"
-          >
-            <font-awesome-icon :icon="['fas', 'trash-alt']" />
-            <span class="fs-6 ms-2">Delete</span>
-          </button>
-
-          <!-- tags -->
-          <div class="mt-4">
-            <p class="mb-2">
-              Tags
-            </p>
-            <div class="row g-2">
-              <div
-                v-for="(name, key) in imageTags(tags)"
-                :key="key"
-                class="col-auto"
-              >
-                <tag                
-                  :text="name"
-                  @click="showTag(name)"
-                />
-              </div>
+          <div class="row g-2">
+            <div
+              v-for="(name, key) in imageTags(tags)"
+              :key="key"
+              class="col-auto"
+            >
+              <tag                
+                :text="name"
+                @click="showTag(name)"
+              />
             </div>
           </div>
         </div>
@@ -152,9 +149,3 @@ export default {
   },
 }
 </script>
-
-<style scoped>
-div.card {
-  height:738px;
-}
-</style>
