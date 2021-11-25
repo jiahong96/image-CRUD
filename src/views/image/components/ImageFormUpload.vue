@@ -21,6 +21,7 @@
       </div>
     </div>
 
+    <!-- Image Dropbox -->
     <div class="col-12 mb-4">
       <label
         for="file"

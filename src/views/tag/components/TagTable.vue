@@ -2,6 +2,7 @@
   <div class="card card-shadow">
     <tag-table-header @search="setSearch" />
     
+    <!-- Table Body -->
     <div
       v-show="!isLoading"
       class="card-body table-responsive p-0"
@@ -53,6 +54,7 @@
       </table>
     </div>
 
+    <!-- Table Footer (pagination) -->
     <div class="card-footer bg-white border-top-0 pt-4 pb-5">
       <pagination
         :page-count="pageCount"

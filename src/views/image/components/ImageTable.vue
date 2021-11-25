@@ -7,6 +7,7 @@
       @created="getImages"
     />
 
+    <!-- Table Body -->
     <div
       v-show="!isLoading"
       class="card-body table-responsive p-0"
@@ -89,6 +90,8 @@
         </tbody>               
       </table>
     </div>
+
+    <!-- Table Footer (pagination) -->
     <div class="card-footer bg-white border-top-0 pt-4 pb-5">
       <pagination
         :page-count="pageCount"
@@ -99,13 +102,13 @@
       />
     </div>
 
+    <!-- Edit & Delete Modals -->
     <image-modal-edit
       :image-id="currentImage.id || ''"
       :image-name="currentImage.name || ''"
       :is-visible.sync="showEditModal"
       @updated="getImages"
     />   
-
     <image-modal-delete 
       :image-id="currentImage.id || ''"
       :image-name="currentImage.name || ''"
@@ -217,7 +220,7 @@ export default {
     remove (image) {
       this.currentImage = image
       this.showDeleteModal = true
-    },
+    },    
     imageTags (tags) {
       return tags.reduce((accumulated, currentValue) => {
         accumulated[currentValue.tag_id] = currentValue.concept_name
@@ -260,7 +263,7 @@ export default {
     },
     setPage (page) {
       this.currentPage = page
-    },    
+    },   
     resetPagination () {
       this.currentPage = 1
     }

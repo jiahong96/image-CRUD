@@ -1,7 +1,8 @@
 <template>
   <div
     class="card card-shadow p-6 w-100"
-  >
+  > 
+    <!-- card header -->
     <h2 class="fw-normal mb-4">
       <router-link
         to="/home"
@@ -10,7 +11,9 @@
         Images
       </router-link> {{ ` / ${title}` }}
     </h2>
+
     <div class="row g-0">
+      <!-- image section -->
       <div class="col-md-4">
         <img
           class="contain"
@@ -20,6 +23,8 @@
           height="350"
         >
       </div>
+
+      <!-- image details section -->
       <div class="col-md-8">
         <div class="card-body">
           <h5 class="card-title fw-bolder fs-2">
@@ -30,6 +35,7 @@
             <small class="text-black">{{ $bytesToSize(fileSize) }}</small>
           </p>
 
+          <!-- action buttons -->
           <button
             class="btn btn-sm btn-light me-3"
             @click="edit"
@@ -44,6 +50,7 @@
             Delete
           </button>
 
+          <!-- tags -->
           <div class="mt-4">
             <p class="mb-2">
               Tags
@@ -65,6 +72,7 @@
       </div>
     </div>
 
+    <!-- modals -->
     <image-modal-edit 
       :image-id="imageId"
       :image-name="title"

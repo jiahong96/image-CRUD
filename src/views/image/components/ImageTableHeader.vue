@@ -21,6 +21,7 @@
       <image-modal-create @created="$emit('created')" />
     </div>
 
+    <!-- Filter Tag group -->
     <div
       v-if="!tagFilter"
       class="btn-group row g-3 mb-5"
@@ -47,6 +48,7 @@
       </div>
     </div>
 
+    <!-- Search Input -->
     <div class="d-flex">
       <input
         v-model="searchValue"

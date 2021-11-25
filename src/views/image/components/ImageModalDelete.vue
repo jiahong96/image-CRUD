@@ -13,9 +13,12 @@
         </div>
 
         <div class="modal-body row">
+          <!-- Modal description -->
           <div class="col-12 mb-4">
             <p>Delete <strong>{{ imageName }}</strong> ?</p>
           </div>
+          
+          <!-- Modal actions -->
           <div class="col-12 text-end">
             <button
               type="button"
